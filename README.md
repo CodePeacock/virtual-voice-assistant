@@ -1,1 +1,4 @@
 # virtual-voice-assistant
+
+Integrating Virtual Assistant with Trello App
+  Software Project Management is generally done manually in by the Scrum Master of a project. It is done using Excel, Trello, Jira which are software development tools used by agile teams. Managing a software project manually using these tools itself does not make it any less tedious. So, instead of managing it manually we can integrate these applications with a virtual voice assistant. We are using Trello as an integrating unit to develop this idea. The virtual voice assistant is developed in Python using SpeechRecognition module and Text-to-Speech module. This assistant responds to voice commands and interacts with Trello app accordingly. It can perform basic CRUD(create, read, update, delete) operations on Trello cards of a board. 
