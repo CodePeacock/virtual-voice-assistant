@@ -1,3 +1,4 @@
+from trello import TrelloClient
 import subprocess
 import wolframalpha
 import pyttsx3
@@ -33,8 +34,6 @@ voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[1].id)
 
 vaname = "Chikku"
-
-from trello import TrelloClient
 
 
 client = TrelloClient(
@@ -121,7 +120,7 @@ def sendEmail(to, content):
 
 
 if __name__ == "__main__":
-    clear = lambda: os.system("cls")
+    def clear(): return os.system("cls")
 
     # This Function will clean any
     # command before execution of this python file
@@ -147,6 +146,9 @@ if __name__ == "__main__":
 
         elif "open board" in query:
             open_board(client)
+
+        elif "open trello" in query:
+            webbrowser.open("https://trello.com/")
 
         elif "open youtube" in query:
             speak("Here you go to Youtube\n")
@@ -238,7 +240,7 @@ if __name__ == "__main__":
             app_id = "Wolframalpha api id"
             client = wolframalpha.Client(app_id)
             indx = query.lower().split().index("calculate")
-            query = query.split()[indx + 1 :]
+            query = query.split()[indx + 1:]
             res = client.query(" ".join(query))
             answer = next(res.results).text
             print("The answer is " + answer)
@@ -326,7 +328,8 @@ if __name__ == "__main__":
             location = query
             speak("User asked to Locate")
             speak(location)
-            webbrowser.open("https://www.google.com / maps / place/" + location + "")
+            webbrowser.open(
+                "https://www.google.com / maps / place/" + location + "")
 
         elif "camera" in query or "take a photo" in query:
             ec.capture(0, "Jarvis Camera ", "img.jpg")
