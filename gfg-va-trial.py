@@ -27,12 +27,28 @@ from ecapture import ecapture as ec
 from bs4 import BeautifulSoup
 import win32com.client as wincl
 from urllib.request import urlopen
+from trello import TrelloClient
 
 engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[1].id)
 
 vaname = "Chikku"
+
+client = TrelloClient(
+    api_key="db58ee5254120da35e6ae9a3e72029dd",
+    token="216ba9bd2d7844ad5addfc84b90a796f35a73a3090772e6a57bb8d5d76aad712",
+    token_secret="4d54768fba958b54d6e6c5a720aa031e4a66c49ca5223b13ef203daf6486e289",
+)
+
+
+def open_board(client):
+    boards = client.list_boards()
+
+    for board in boards:
+        print(board.name)
+        print(board.id)
+        print(board.url)
 
 
 def speak(audio):
@@ -126,6 +142,9 @@ if __name__ == "__main__":
             speak("According to Wikipedia")
             print(results)
             speak(results)
+
+        elif "open board" in query:
+            open_board(client)
 
         elif "open youtube" in query:
             speak("Here you go to Youtube\n")

@@ -7,12 +7,12 @@ client = TrelloClient(
     token_secret="4d54768fba958b54d6e6c5a720aa031e4a66c49ca5223b13ef203daf6486e289",
 )
 
-# boards = client.list_boards()
+boards = client.list_boards()
 
-# for board in boards:
-#     print(board.name)
-#     print(board.id)
-#     print(board.url)
+for board in boards:
+    print(board.name)
+    print(board.id)
+    print(board.url)
 
 single_board = client.get_board("5e74a18787c2e22cebf9fbad")
 # lists = single_board.all_lists()
