@@ -47,7 +47,7 @@ def get_audio():
             said = r.recognize_google(audio)
             print(said)
         except Exception as e:
-            print("Exception: " + str(e))
+            print(f"Exception: {str(e)}")
 
     return said.lower()
 
@@ -71,9 +71,7 @@ def authenticate_google():
         with open("token.pickle", "wb") as token:
             pickle.dump(creds, token)
 
-    service = build("calendar", "v3", credentials=creds)
-
-    return service
+    return build("calendar", "v3", credentials=creds)
 
 
 def get_events(day, service):
@@ -95,11 +93,7 @@ def get_events(day, service):
         )
         .execute()
     )
-    events = events_result.get("items", [])
-
-    if not events:
-        speak("No upcoming events found.")
-    else:
+    if events := events_result.get("items", []):
         speak(f"You have {len(events)} events on this day.")
 
         for event in events:
@@ -107,14 +101,17 @@ def get_events(day, service):
             print(start, event["summary"])
             start_time = str(start.split("T")[1].split("-")[0])
             if int(start_time.split(":")[0]) < 12:
-                start_time = start_time + "am"
+                start_time += "am"
             else:
                 start_time = (
                     str(int(start_time.split(":")[0]) - 12) + start_time.split(":")[1]
                 )
-                start_time = start_time + "pm"
+                start_time += "pm"
 
             speak(event["summary"] + " at " + start_time)
+
+    else:
+        speak("No upcoming events found.")
 
 
 def get_date(text):
@@ -142,7 +139,7 @@ def get_date(text):
                 if found > 0:
                     try:
                         day = int(word[:found])
-                    except:
+                    except Exception:
                         pass
 
     # THE NEW PART STARTS HERE
@@ -153,11 +150,7 @@ def get_date(text):
 
     # This is slighlty different from the video but the correct version
     if month == -1 and day != -1:  # if we didn't find a month, but we have a day
-        if day < today.day:
-            month = today.month + 1
-        else:
-            month = today.month
-
+        month = today.month + 1 if day < today.day else today.month
     # if we only found a dta of the week
     if month == -1 and day == -1 and day_of_week != -1:
         current_day_of_week = today.weekday()
@@ -198,8 +191,7 @@ while True:
         CALENDAR_STRS = ["what do i have", "do i have plans", "am i busy"]
         for phrase in CALENDAR_STRS:
             if phrase in text:
-                date = get_date(text)
-                if date:
+                if date := get_date(text):
                     get_events(date, SERVICE)
                 else:
                     speak("I don't understand")

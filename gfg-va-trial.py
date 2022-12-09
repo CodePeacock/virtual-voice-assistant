@@ -33,6 +33,14 @@ engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[1].id)
 
+for voice in voices:
+    print("Voice: %s" % voice.name)
+    print(" - ID: %s" % voice.id)
+    print(" - Languages: %s" % voice.languages)
+    print(" - Gender: %s" % voice.gender)
+    print(" - Age: %s" % voice.age)
+    print("\n")
+
 vaname = "Alice"
 
 from dotenv import load_dotenv
@@ -49,6 +57,8 @@ client = TrelloClient(
     token=trello_token,
     token_secret="4d54768fba958b54d6e6c5a720aa031e4a66c49ca5223b13ef203daf6486e289",
 )
+
+# print(pyttsx3.voice.Voice)
 
 
 def open_board(client):
@@ -254,8 +264,8 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         query = query.split()[indx + 1 :]
         res = client.query(" ".join(query))
         answer = next(res.results).text
-        print("The answer is " + answer)
-        speak("The answer is " + answer)
+        print(f"The answer is {answer}")
+        speak(f"The answer is {answer}")
 
     elif "search" in query or "play" in query:
         query = query.replace("search", "")
@@ -296,18 +306,15 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
                 """https://newsapi.org / v1 / articles?source = the-times-of-india&sortBy = top&apiKey =\\times of India Api key\\"""
             )
             data = json.load(jsonObj)
-            i = 1
-
             speak("here are some top news from the times of india")
             print("""=============== TIMES OF INDIA ============""" + "\n")
 
-            for item in data["articles"]:
-                print(str(i) + ". " + item["title"] + "\n")
+            for i, item in enumerate(data["articles"], start=1):
+                print(f"{str(i)}. " + item["title"] + "\n")
                 print(item["description"] + "\n")
-                speak(str(i) + ". " + item["title"] + "\n")
-                i += 1
+                speak(f"{str(i)}. " + item["title"] + "\n")
         except Exception as e:
-            print(str(e))
+            print(e)
 
     elif "lock window" in query:
         speak("locking the device")
@@ -332,7 +339,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         location = query
         speak("User asked to Locate")
         speak(location)
-        webbrowser.open("https://www.google.com / maps / place/" + location + "")
+        webbrowser.open(f"https://www.google.com / maps / place/{location}")
 
     elif "camera" in query or "take a photo" in query:
         ec.capture(0, "Jarvis Camera ", "img.jpg")
@@ -359,10 +366,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
             strTime = datetime.datetime.now().strftime("% H:% M:% S")
             file.write(strTime)
             file.write(" :- ")
-            file.write(note)
-        else:
-            file.write(note)
-
+        file.write(note)
     elif "show note" in query:
         speak("Showing Notes")
         file = open("jarvis.txt", "r")
@@ -391,14 +395,12 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         speak(vaname)
 
     elif "weather" in query:
-        # Google Open weather website
-        # to get API of Open weather
-        api_key = "Api key"
         base_url = "http://api.openweathermap.org / data / 2.5 / weather?"
         speak(" City name ")
         print("City name : ")
         city_name = takeCommand()
-        complete_url = base_url + "appid =" + api_key + "&q =" + city_name
+        api_key = "Api key"
+        complete_url = f"{base_url}appid ={api_key}&q ={city_name}"
         response = requests.get(complete_url)
         x = response.json()
 
@@ -410,8 +412,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
             z = x["weather"]
             weather_description = z[0]["description"]
             print(
-                " Temperature (in kelvin unit) = "
-                + str(current_temperature)
+                f" Temperature (in kelvin unit) = {str(current_temperature)}"
                 + "\n atmospheric pressure (in hPa unit) ="
                 + str(current_pressure)
                 + "\n humidity (in percentage) = "
@@ -435,11 +436,8 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
 
         print(message.sid)
 
-    elif "wikipedia" in query:
-        webbrowser.open("wikipedia.com")
-
     elif "Good Morning" in query:
-        speak("A warm" + query)
+        speak(f"A warm{query}")
         speak("How are you Mister")
         speak(vaname)
 
@@ -447,27 +445,24 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
     elif "will you be my gf" in query or "will you be my bf" in query:
         speak("I'm not sure about, may be you should give me some time")
 
-    elif "how are you" in query:
-        speak("I'm fine, glad you me that")
-
     elif "i love you" in query:
         speak("It's hard to understand")
 
 
 if __name__ == "__main__":
 
-    def clear():
-        return os.system("cls")
+    # def clear():
+    #     return os.system("cls")
 
     # This Function will clean any
     # command before execution of this python file
-    clear()
+    # clear()
     wishMe()
     username()
 
     while True:
 
-        main()(client, open_board, speak, wishMe, takeCommand, sendEmail)
+        main(client, open_board, speak, wishMe, takeCommand, sendEmail)
 
         # elif "what is" in query or "who is" in query:
 
