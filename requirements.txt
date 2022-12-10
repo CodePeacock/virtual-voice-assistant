@@ -5,7 +5,7 @@ google_auth_oauthlib==0.4.6
 neuralintents==0.0.4
 protobuf==4.21.11
 py_trello==0.18.0
-pycurl==7.45.1
+# pycurl==7.45.1
 pyjokes==0.6.0
 python-dotenv==0.21.0
 pyttsx3==2.90
