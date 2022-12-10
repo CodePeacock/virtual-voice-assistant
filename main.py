@@ -1,8 +1,11 @@
+from dotenv import load_dotenv
 from trello import TrelloClient
 import subprocess
 import wolframalpha
 import pyttsx3
+
 import json
+
 import speech_recognition as sr
 import datetime
 
@@ -21,6 +24,7 @@ import shutil
 from twilio.rest import Client
 from clint.textui import progress
 from ecapture import ecapture as ec
+
 from urllib.request import urlopen
 
 engine = pyttsx3.init("sapi5")
@@ -29,23 +33,22 @@ engine.setProperty("voice", voices[1].id)
 
 vaname = "Alice"
 
-from dotenv import load_dotenv
 
 load_dotenv()
 
 trello_api_key = os.getenv("TRELLO_API_KEY")
 trello_token = os.getenv("TRELLO_TOKEN")
-trello_token_secret = os.getenv("TRELLO_TOKEN_SECRET")
 
 # print(trello_api_key, trello_token)
 
 client = TrelloClient(
     api_key=trello_api_key,
     token=trello_token,
-    token_secret=trello_token_secret,
+    token_secret="4d54768fba958b54d6e6c5a720aa031e4a66c49ca5223b13ef203daf6486e289",
 )
 
-# print(pyttsx3.voice.Voice)
+board_list = [board.name.lower() for board in client.list_boards()]
+print(board_list)
 
 
 def open_board(client):
@@ -56,10 +59,35 @@ def open_board(client):
     """
     boards = client.list_boards()
 
+    # for board in boards:
+    #     print(board.name)
+    #     print(board.id)
+    #     print(board.url)
+    i = 0
     for board in boards:
-        print(board.name)
-        print(board.id)
-        print(board.url)
+        print(board_list)
+        while len(boards) > 1:
+            while i < len(board_list):
+                speak("Which board do you want to open?")
+                command = takeCommand().lower()
+                print(command)
+                if command == "None".lower():
+                    speak("Sorry, I didn't get that")
+                    return
+                elif command.lower() in board_list:
+                    speak(f"Opening {board.name}")
+                    print(board.name)
+                    print(board.id)
+                    board_id = board.id
+                    webbrowser.open(board.url)
+                else:
+                    speak("Board not found")
+                i += 1
+
+        # elif len(boards) == 0:
+        #     speak("No boards found")
+        # else:
+        #     webbrowser.open(boards[0].url)
 
 
 def speak(audio):
@@ -79,13 +107,13 @@ def wishMe():
     """
     hour = int(datetime.datetime.now().hour)
     if hour >= 0 and hour < 12:
-        speak("Good Morning Nigga !")
+        speak("Good Morning Buddy !")
 
     elif hour >= 12 and hour < 18:
-        speak("Good Afternoon Nigga !")
+        speak("Good Afternoon Buddy !")
 
     else:
-        speak("Good Evening Nigga !")
+        speak("Good Evening Buddy !")
 
     speak(f"I am {vaname}")
 
@@ -94,17 +122,17 @@ def username():
     """
     It asks the user for a name, then greets the user with that name.
     """
-    speak("What should i call you sir")
+    speak("What should i call you Buddy")
     uname = takeCommand()
-    speak("Welcome Mister")
+    speak("Welcome Buddy")
     speak(uname)
     columns = shutil.get_terminal_size().columns
 
     print("#####################".center(columns))
-    print("Welcome Mr.", uname.center(columns))
+    print("Welcome", uname.center(columns))
     print("#####################".center(columns))
 
-    speak("How can i Help you, Sir?")
+    speak("How can i Help you, Buddy")
 
 
 def takeCommand():
@@ -126,7 +154,6 @@ def takeCommand():
         print(e)
         print("Unable to Recognize your voice.")
         return "None"
-
     return query
 
 
@@ -177,10 +204,10 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
     elif "play music" in query or "play song" in query:
         speak("Here you go with music")
         # music_dir = "G:\\Song"
-        music_dir = "D:\Music\Soggfy"
+        music_dir = "C:\\Users\\GAURAV\\Music"
         songs = os.listdir(music_dir)
         print(songs)
-        os.startfile(os.path.join(music_dir, songs[1]))
+        random = os.startfile(os.path.join(music_dir, songs[1]))
 
     elif "the time" in query:
         strTime = datetime.datetime.now().strftime("% H:% M:% S")
@@ -241,7 +268,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         speak("I have been created by Achsah & Mayur.")
 
     elif "joke" in query:
-        # speak(pyjokes.get_joke())
+        speak(pyjokes.get_joke())
         print(pyjokes.get_joke())
 
     elif "calculate" in query:
@@ -251,8 +278,8 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         query = query.split()[indx + 1 :]
         res = client.query(" ".join(query))
         answer = next(res.results).text
-        print(f"The answer is {answer}")
-        speak(f"The answer is {answer}")
+        print("The answer is " + answer)
+        speak("The answer is " + answer)
 
     elif "search" in query or "play" in query:
         query = query.replace("search", "")
@@ -293,15 +320,18 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
                 """https://newsapi.org / v1 / articles?source = the-times-of-india&sortBy = top&apiKey =\\times of India Api key\\"""
             )
             data = json.load(jsonObj)
+            i = 1
+
             speak("here are some top news from the times of india")
             print("""=============== TIMES OF INDIA ============""" + "\n")
 
-            for i, item in enumerate(data["articles"], start=1):
-                print(f"{str(i)}. " + item["title"] + "\n")
+            for item in data["articles"]:
+                print(str(i) + ". " + item["title"] + "\n")
                 print(item["description"] + "\n")
-                speak(f"{str(i)}. " + item["title"] + "\n")
+                speak(str(i) + ". " + item["title"] + "\n")
+                i += 1
         except Exception as e:
-            print(e)
+            print(str(e))
 
     elif "lock window" in query:
         speak("locking the device")
@@ -326,7 +356,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         location = query
         speak("User asked to Locate")
         speak(location)
-        webbrowser.open(f"https://www.google.com / maps / place/{location}")
+        webbrowser.open("https://www.google.com / maps / place/" + location + "")
 
     elif "camera" in query or "take a photo" in query:
         ec.capture(0, "Jarvis Camera ", "img.jpg")
@@ -353,7 +383,10 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
             strTime = datetime.datetime.now().strftime("% H:% M:% S")
             file.write(strTime)
             file.write(" :- ")
-        file.write(note)
+            file.write(note)
+        else:
+            file.write(note)
+
     elif "show note" in query:
         speak("Showing Notes")
         file = open("jarvis.txt", "r")
@@ -382,12 +415,14 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         speak(vaname)
 
     elif "weather" in query:
+        # Google Open weather website
+        # to get API of Open weather
+        api_key = "Api key"
         base_url = "http://api.openweathermap.org / data / 2.5 / weather?"
         speak(" City name ")
         print("City name : ")
         city_name = takeCommand()
-        api_key = "Api key"
-        complete_url = f"{base_url}appid ={api_key}&q ={city_name}"
+        complete_url = base_url + "appid =" + api_key + "&q =" + city_name
         response = requests.get(complete_url)
         x = response.json()
 
@@ -399,7 +434,8 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
             z = x["weather"]
             weather_description = z[0]["description"]
             print(
-                f" Temperature (in kelvin unit) = {str(current_temperature)}"
+                " Temperature (in kelvin unit) = "
+                + str(current_temperature)
                 + "\n atmospheric pressure (in hPa unit) ="
                 + str(current_pressure)
                 + "\n humidity (in percentage) = "
@@ -423,14 +459,20 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
 
         print(message.sid)
 
+    elif "wikipedia" in query:
+        webbrowser.open("wikipedia.com")
+
     elif "Good Morning" in query:
-        speak(f"A warm{query}")
-        speak("How are you Mister")
+        speak("A warm" + query)
+        speak("How are you Buddy?")
         speak(vaname)
 
         # most asked question from google Assistant
     elif "will you be my gf" in query or "will you be my bf" in query:
         speak("I'm not sure about, may be you should give me some time")
+
+    elif "how are you" in query:
+        speak("I'm fine, glad you me that")
 
     elif "i love you" in query:
         speak("It's hard to understand")
