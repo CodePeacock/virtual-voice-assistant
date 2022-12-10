@@ -2,10 +2,7 @@ from trello import TrelloClient
 import subprocess
 import wolframalpha
 import pyttsx3
-import tkinter
 import json
-import random
-import operator
 import speech_recognition as sr
 import datetime
 
@@ -15,7 +12,6 @@ import os
 
 import winshell
 import pyjokes
-import feedparser
 import smtplib
 import ctypes
 import time
@@ -25,21 +21,11 @@ import shutil
 from twilio.rest import Client
 from clint.textui import progress
 from ecapture import ecapture as ec
-from bs4 import BeautifulSoup
-import win32com.client as wincl
 from urllib.request import urlopen
 
 engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[1].id)
-
-for voice in voices:
-    print("Voice: %s" % voice.name)
-    print(" - ID: %s" % voice.id)
-    print(" - Languages: %s" % voice.languages)
-    print(" - Gender: %s" % voice.gender)
-    print(" - Age: %s" % voice.age)
-    print("\n")
 
 vaname = "Alice"
 
@@ -49,13 +35,14 @@ load_dotenv()
 
 trello_api_key = os.getenv("TRELLO_API_KEY")
 trello_token = os.getenv("TRELLO_TOKEN")
+trello_token_secret = os.getenv("TRELLO_TOKEN_SECRET")
 
 # print(trello_api_key, trello_token)
 
 client = TrelloClient(
     api_key=trello_api_key,
     token=trello_token,
-    token_secret="4d54768fba958b54d6e6c5a720aa031e4a66c49ca5223b13ef203daf6486e289",
+    token_secret=trello_token_secret,
 )
 
 # print(pyttsx3.voice.Voice)
@@ -190,10 +177,10 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
     elif "play music" in query or "play song" in query:
         speak("Here you go with music")
         # music_dir = "G:\\Song"
-        music_dir = "C:\\Users\\GAURAV\\Music"
+        music_dir = "D:\Music\Soggfy"
         songs = os.listdir(music_dir)
         print(songs)
-        random = os.startfile(os.path.join(music_dir, songs[1]))
+        os.startfile(os.path.join(music_dir, songs[1]))
 
     elif "the time" in query:
         strTime = datetime.datetime.now().strftime("% H:% M:% S")
@@ -451,12 +438,12 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
 
 if __name__ == "__main__":
 
-    # def clear():
-    #     return os.system("cls")
+    def clear():
+        return os.system("cls")
 
     # This Function will clean any
     # command before execution of this python file
-    # clear()
+    clear()
     wishMe()
     username()
 
