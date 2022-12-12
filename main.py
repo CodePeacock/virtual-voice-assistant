@@ -92,6 +92,63 @@ def update_board_name(client):
             board.set_name(new_board_name)
 
 
+def add_checklist(client):
+    """
+    This function will add a checklist to a card
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to add a checklist to?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            speak("What list do you want to add a checklist to?")
+            list_name = takeCommand().lower()
+            lists = board.list_lists()
+            for list in lists:
+                if list_name in list.name.lower():
+                    speak("What card do you want to add a checklist to?")
+                    card_name = takeCommand().lower()
+                    cards = list.list_cards()
+                    for card in cards:
+                        if card_name in card.name.lower():
+                            speak("What do you want to name your checklist?")
+                            checklist_name = takeCommand()
+                            card.add_checklist(checklist_name)
+
+
+def add_to_checklist(client):
+    """
+    This function will add an item to a checklist
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to add an item to a checklist?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            speak("What list do you want to add an item to a checklist?")
+            list_name = takeCommand().lower()
+            lists = board.list_lists()
+            for list in lists:
+                if list_name in list.name.lower():
+                    speak("What card do you want to add an item to a checklist?")
+                    card_name = takeCommand().lower()
+                    cards = list.list_cards()
+                    for card in cards:
+                        if card_name in card.name.lower():
+                            speak("What checklist do you want to add an item to?")
+                            checklist_name = takeCommand().lower()
+                            checklists = card.checklists
+                            for checklist in checklists:
+                                if checklist_name in checklist.name.lower():
+                                    speak("What do you want to add to the checklist?")
+                                    item_name = takeCommand()
+                                    checklist.add_item(item_name)
+
+
 def add_list(client):
     """
     This function will add a list to a board
@@ -106,25 +163,6 @@ def add_list(client):
             speak("What do you want to name your list?")
             list_name = takeCommand()
             board.add_list(list_name)
-
-
-def open_list(client):
-    """
-    This function will open a list in a board
-
-    :param client: TrelloClient object
-    """
-    speak("What board do you want to open a list from?")
-    board_name = takeCommand().lower()
-    boards = client.list_boards()
-    for board in boards:
-        if board_name in board.name.lower():
-            speak("What list do you want to open?")
-            list_name = takeCommand().lower()
-            lists = board.list_lists()
-            for list in lists:
-                if list_name in list.name.lower():
-                    webbrowser.open(list.url)
 
 
 def update_list_name(client):
@@ -148,23 +186,52 @@ def update_list_name(client):
                     list.set_name(new_list_name)
 
 
-def delete_list(client):
+def archive_list(client):
     """
-    This function will delete a list
+    This function will archive a list
 
     :param client: TrelloClient object
     """
-    speak("What board do you want to delete a list from?")
+    speak("What board do you want to archive a list from?")
     board_name = takeCommand().lower()
     boards = client.list_boards()
     for board in boards:
         if board_name in board.name.lower():
-            speak("What list do you want to delete?")
+            speak("What list do you want to archive?")
             list_name = takeCommand().lower()
             lists = board.list_lists()
             for list in lists:
                 if list_name in list.name.lower():
-                    list.delete()
+                    list.set_closed(True)
+
+
+def change_card_list(client):
+    """
+    This function will move a card to a different list
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to move a card from?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            speak("What list do you want to move a card from?")
+            list_name = takeCommand().lower()
+            lists = board.list_lists()
+            for list in lists:
+                if list_name in list.name.lower():
+                    speak("What card do you want to move?")
+                    card_name = takeCommand().lower()
+                    cards = list.list_cards()
+                    for card in cards:
+                        if card_name in card.name.lower():
+                            speak("What list do you want to move the card to?")
+                            new_list_name = takeCommand().lower()
+                            new_lists = board.list_lists()
+                            for new_list in new_lists:
+                                if new_list_name in new_list.name.lower():
+                                    card.change_list(new_list.id)
 
 
 def add_card(client):
@@ -307,18 +374,22 @@ def username():
     speak("How can i Help you, Buddy")
 
 
+def fine_tune_audio(r, source):
+    # r.adjust_for_ambient_noise(source, duration=1)
+    print("Listening...")
+    r.pause_threshold = 1
+    result = r.listen(source)
+    print("Now you can speak...")
+
+    return result
+
+
 def takeCommand():
 
     r = sr.Recognizer()
 
     with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source, duration=1)
-        print("Listening...")
-        r.pause_threshold = 1
-        r.energy_threshold = 10
-        audio = r.listen(source, timeout=8, phrase_time_limit=8)
-        print("Now you can speak...")
-
+        audio = fine_tune_audio(r, source)
     try:
         print("Recognizing...")
         query = r.recognize_google(audio, language="en-in")
@@ -378,8 +449,11 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
     elif "update list name" in query:
         update_list_name(client)
 
-    elif "delete list" in query:
-        delete_list(client)
+    elif "move list" in query:
+        move_list(client)
+
+    elif "archive list" in query:
+        archive_list(client)
 
     elif "add card" in query:
         add_card(client)
@@ -392,6 +466,18 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
 
     elif "delete card" in query:
         delete_card(client)
+
+    elif "add member" in query:
+        add_member(client)
+
+    elif "check member" in query:
+        check_member(client)
+
+    elif "check client guest workspaces" in query:
+        check_client_guest_workspaces(client)
+
+    elif "change card position" in query:
+        change_card_position(client)
 
     elif "open youtube" in query:
         speak("Here you go to Youtube\n")
@@ -482,8 +568,8 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         query = query.split()[indx + 1 :]
         res = client.query(" ".join(query))
         answer = next(res.results).text
-        print("The answer is " + answer)
-        speak("The answer is " + answer)
+        print(f"The answer is {answer}")
+        speak(f"The answer is {answer}")
 
     elif "search" in query or "play" in query:
         query = query.replace("search", "")
@@ -524,18 +610,15 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
                 """https://newsapi.org / v1 / articles?source = the-times-of-india&sortBy = top&apiKey =\\times of India Api key\\"""
             )
             data = json.load(jsonObj)
-            i = 1
-
             speak("here are some top news from the times of india")
             print("""=============== TIMES OF INDIA ============""" + "\n")
 
-            for item in data["articles"]:
-                print(str(i) + ". " + item["title"] + "\n")
+            for i, item in enumerate(data["articles"], start=1):
+                print(f"{str(i)}. " + item["title"] + "\n")
                 print(item["description"] + "\n")
-                speak(str(i) + ". " + item["title"] + "\n")
-                i += 1
+                speak(f"{str(i)}. " + item["title"] + "\n")
         except Exception as e:
-            print(str(e))
+            print(e)
 
     elif "lock window" in query:
         speak("locking the device")
@@ -560,7 +643,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         location = query
         speak("User asked to Locate")
         speak(location)
-        webbrowser.open("https://www.google.com / maps / place/" + location + "")
+        webbrowser.open(f"https://www.google.com / maps / place/{location}")
 
     elif "camera" in query or "take a photo" in query:
         ec.capture(0, "Jarvis Camera ", "img.jpg")
@@ -587,10 +670,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
             strTime = datetime.datetime.now().strftime("% H:% M:% S")
             file.write(strTime)
             file.write(" :- ")
-            file.write(note)
-        else:
-            file.write(note)
-
+        file.write(note)
     elif "show note" in query:
         speak("Showing Notes")
         file = open("jarvis.txt", "r")
@@ -619,14 +699,12 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         speak(vaname)
 
     elif "weather" in query:
-        # Google Open weather website
-        # to get API of Open weather
-        api_key = "Api key"
         base_url = "http://api.openweathermap.org / data / 2.5 / weather?"
         speak(" City name ")
         print("City name : ")
         city_name = takeCommand()
-        complete_url = base_url + "appid =" + api_key + "&q =" + city_name
+        api_key = "Api key"
+        complete_url = f"{base_url}appid ={api_key}&q ={city_name}"
         response = requests.get(complete_url)
         x = response.json()
 
@@ -638,8 +716,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
             z = x["weather"]
             weather_description = z[0]["description"]
             print(
-                " Temperature (in kelvin unit) = "
-                + str(current_temperature)
+                f" Temperature (in kelvin unit) = {str(current_temperature)}"
                 + "\n atmospheric pressure (in hPa unit) ="
                 + str(current_pressure)
                 + "\n humidity (in percentage) = "
@@ -663,20 +740,14 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
 
         print(message.sid)
 
-    elif "wikipedia" in query:
-        webbrowser.open("wikipedia.com")
-
     elif "Good Morning" in query:
-        speak("A warm" + query)
+        speak(f"A warm{query}")
         speak("How are you Buddy?")
         speak(vaname)
 
         # most asked question from google Assistant
     elif "will you be my gf" in query or "will you be my bf" in query:
         speak("I'm not sure about, may be you should give me some time")
-
-    elif "how are you" in query:
-        speak("I'm fine, glad you me that")
 
     elif "i love you" in query:
         speak("It's hard to understand")
@@ -690,8 +761,8 @@ if __name__ == "__main__":
     # # This Function will clean any
     # # command before execution of this python file
     # clear()
-    wishMe()
-    username()
+    # wishMe()
+    # username()
 
     while True:
 
