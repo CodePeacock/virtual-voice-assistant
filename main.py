@@ -53,35 +53,213 @@ print(board_list)
 
 def open_board(client):
     """
-    This function will print the name, id, and url of all the boards that the user has access to
+    This function will open a board in the user's account
 
     :param client: TrelloClient object
     """
+    speak("What board do you want to open?")
+    board_name = takeCommand().lower()
     boards = client.list_boards()
-
-    # for board in boards:
-    #     print(board.name)
-    #     print(board.id)
-    #     print(board.url)
-    i = 0
     for board in boards:
-        print(board_list)
-        while len(boards) > 1:
-            while i < len(board_list):
-                speak("Which board do you want to open?")
-                command = takeCommand().lower()
-                print(command)
-                if command == "None".lower():
-                    speak("Sorry, I didn't get that")
-                if command in board_list:
-                    boards = client.list_boards()
-                    board = board_list.index(command)
-                    webbrowser.open(boards[board].url)
+        if board_name in board.name.lower():
+            webbrowser.open(board.url)
 
-        # elif len(boards) == 0:
-        #     speak("No boards found")
-        # else:
-        #     webbrowser.open(boards[0].url)
+
+def add_board(client):
+    """
+    This function will add a board to the user's account
+
+    :param client: TrelloClient object
+    """
+    speak("What do you want to name your board?")
+    board_name = takeCommand()
+    client.add_board(board_name)
+
+
+def update_board_name(client):
+    """
+    This function will update a board
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to update?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            speak("What do you want to update the board name to?")
+            new_board_name = takeCommand()
+            board.set_name(new_board_name)
+
+
+def add_list(client):
+    """
+    This function will add a list to a board
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to add a list to?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            speak("What do you want to name your list?")
+            list_name = takeCommand()
+            board.add_list(list_name)
+
+
+def open_list(client):
+    """
+    This function will open a list in a board
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to open a list from?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            speak("What list do you want to open?")
+            list_name = takeCommand().lower()
+            lists = board.list_lists()
+            for list in lists:
+                if list_name in list.name.lower():
+                    webbrowser.open(list.url)
+
+
+def update_list_name(client):
+    """
+    This function will update a list
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to update a list from?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            speak("What list do you want to update?")
+            list_name = takeCommand().lower()
+            lists = board.list_lists()
+            for list in lists:
+                if list_name in list.name.lower():
+                    speak("What do you want to update the list name to?")
+                    new_list_name = takeCommand()
+                    list.set_name(new_list_name)
+
+
+def delete_list(client):
+    """
+    This function will delete a list
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to delete a list from?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            speak("What list do you want to delete?")
+            list_name = takeCommand().lower()
+            lists = board.list_lists()
+            for list in lists:
+                if list_name in list.name.lower():
+                    list.delete()
+
+
+def add_card(client):
+    """
+    This function will add a card to a list
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to add a card to?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            speak("What list do you want to add a card to?")
+            list_name = takeCommand().lower()
+            lists = board.list_lists()
+            for list in lists:
+                if list_name in list.name.lower():
+                    speak("What do you want to name your card?")
+                    card_name = takeCommand()
+                    list.add_card(card_name)
+
+
+def open_card(client):
+    """
+    This function will open a card in a list
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to open a card from?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            speak("What list do you want to open a card from?")
+            list_name = takeCommand().lower()
+            lists = board.list_lists()
+            for list in lists:
+                if list_name in list.name.lower():
+                    speak("What card do you want to open?")
+                    card_name = takeCommand().lower()
+                    cards = list.list_cards()
+                    for card in cards:
+                        if card_name in card.name.lower():
+                            webbrowser.open(card.url)
+
+
+def update_card_name(client):
+    """
+    This function will update a card
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to update a card from?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            speak("What list do you want to update a card from?")
+            list_name = takeCommand().lower()
+            lists = board.list_lists()
+            for list in lists:
+                if list_name in list.name.lower():
+                    speak("What card do you want to update?")
+                    card_name = takeCommand().lower()
+                    cards = list.list_cards()
+                    for card in cards:
+                        if card_name in card.name.lower():
+                            speak("What do you want to update the card name to?")
+                            new_card_name = takeCommand()
+                            card.set_name(new_card_name)
+
+
+def delete_card(client):
+    """
+    This function will delete a card
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to delete a card from?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            speak("What list do you want to delete a card from?")
+            list_name = takeCommand().lower()
+            lists = board.list_lists()
+            for list in lists:
+                if list_name in list.name.lower():
+                    speak("What card do you want to delete?")
+                    card_name = takeCommand().lower()
+                    cards = list.list_cards()
+                    for card in cards:
+                        if card_name in card.name.lower():
+                            card.delete()
 
 
 def speak(audio):
@@ -96,7 +274,7 @@ def speak(audio):
 
 def wishMe():
     """
-    It takes the current hour and if it's between 0 and 12, it says "Good Morning", if it's between 12
+    It takes the current hour and if it's between 0 and 1p, it says "Good Morning", if it's between 12
     and 18, it says "Good Afternoon", and if it's between 18 and 24, it says "Good Evening".
     """
     hour = int(datetime.datetime.now().hour)
@@ -179,11 +357,41 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         print(results)
         speak(results)
 
+    elif "open trello" in query:
+        webbrowser.open("https://trello.com/")
+
     elif "open board" in query:
         open_board(client)
 
-    elif "open trello" in query:
-        webbrowser.open("https://trello.com/")
+    elif "add board" in query:
+        add_board(client)
+
+    elif "update board name" in query:
+        update_board_name(client)
+
+    elif "add list" in query:
+        add_list(client)
+
+    elif "open list" in query:
+        open_list(client)
+
+    elif "update list name" in query:
+        update_list_name(client)
+
+    elif "delete list" in query:
+        delete_list(client)
+
+    elif "add card" in query:
+        add_card(client)
+
+    elif "open card" in query:
+        open_card(client)
+
+    elif "update card name" in query:
+        update_card_name(client)
+
+    elif "delete card" in query:
+        delete_card(client)
 
     elif "open youtube" in query:
         speak("Here you go to Youtube\n")
@@ -271,7 +479,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         app_id = "Wolframalpha api id"
         client = wolframalpha.Client(app_id)
         indx = query.lower().split().index("calculate")
-        query = query.split()[indx + 1:]
+        query = query.split()[indx + 1 :]
         res = client.query(" ".join(query))
         answer = next(res.results).text
         print("The answer is " + answer)
@@ -303,8 +511,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         speak("I was created as a Minor project by Mister Gaurav ")
 
     elif "change background" in query:
-        ctypes.windll.user32.SystemParametersInfoW(
-            20, 0, "Location of wallpaper", 0)
+        ctypes.windll.user32.SystemParametersInfoW(20, 0, "Location of wallpaper", 0)
         speak("Background changed successfully")
 
     elif "open bluestack" in query:
@@ -353,8 +560,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         location = query
         speak("User asked to Locate")
         speak(location)
-        webbrowser.open(
-            "https://www.google.com / maps / place/" + location + "")
+        webbrowser.open("https://www.google.com / maps / place/" + location + "")
 
     elif "camera" in query or "take a photo" in query:
         ec.capture(0, "Jarvis Camera ", "img.jpg")
