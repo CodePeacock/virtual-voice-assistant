@@ -73,16 +73,10 @@ def open_board(client):
                 print(command)
                 if command == "None".lower():
                     speak("Sorry, I didn't get that")
-                    return
-                elif command.lower() in board_list:
-                    speak(f"Opening {board.name}")
-                    print(board.name)
-                    print(board.id)
-                    board_id = board.id
-                    webbrowser.open(board.url)
-                else:
-                    speak("Board not found")
-                i += 1
+                if command in board_list:
+                    boards = client.list_boards()
+                    board = board_list.index("demo")
+                    webbrowser.open(boards[board].url)
 
         # elif len(boards) == 0:
         #     speak("No boards found")
@@ -140,10 +134,12 @@ def takeCommand():
     r = sr.Recognizer()
 
     with sr.Microphone() as source:
-
+        r.adjust_for_ambient_noise(source, duration=1)
         print("Listening...")
         r.pause_threshold = 1
-        audio = r.listen(source)
+        r.energy_threshold = 10
+        audio = r.listen(source, timeout=8, phrase_time_limit=8)
+        print("Now you can speak...")
 
     try:
         print("Recognizing...")
@@ -275,7 +271,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         app_id = "Wolframalpha api id"
         client = wolframalpha.Client(app_id)
         indx = query.lower().split().index("calculate")
-        query = query.split()[indx + 1 :]
+        query = query.split()[indx + 1:]
         res = client.query(" ".join(query))
         answer = next(res.results).text
         print("The answer is " + answer)
@@ -307,7 +303,8 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         speak("I was created as a Minor project by Mister Gaurav ")
 
     elif "change background" in query:
-        ctypes.windll.user32.SystemParametersInfoW(20, 0, "Location of wallpaper", 0)
+        ctypes.windll.user32.SystemParametersInfoW(
+            20, 0, "Location of wallpaper", 0)
         speak("Background changed successfully")
 
     elif "open bluestack" in query:
@@ -356,7 +353,8 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         location = query
         speak("User asked to Locate")
         speak(location)
-        webbrowser.open("https://www.google.com / maps / place/" + location + "")
+        webbrowser.open(
+            "https://www.google.com / maps / place/" + location + "")
 
     elif "camera" in query or "take a photo" in query:
         ec.capture(0, "Jarvis Camera ", "img.jpg")
@@ -480,12 +478,12 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
 
 if __name__ == "__main__":
 
-    def clear():
-        return os.system("cls")
+    # def clear():
+    #     return os.system("cls")
 
-    # This Function will clean any
-    # command before execution of this python file
-    clear()
+    # # This Function will clean any
+    # # command before execution of this python file
+    # clear()
     wishMe()
     username()
 
