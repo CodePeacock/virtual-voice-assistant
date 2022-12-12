@@ -75,7 +75,7 @@ def open_board(client):
                     speak("Sorry, I didn't get that")
                 if command in board_list:
                     boards = client.list_boards()
-                    board = board_list.index("demo")
+                    board = board_list.index(command)
                     webbrowser.open(boards[board].url)
 
         # elif len(boards) == 0:
