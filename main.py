@@ -118,37 +118,6 @@ def add_checklist(client):
                             card.add_checklist(checklist_name)
 
 
-def add_to_checklist(client):
-    """
-    This function will add an item to a checklist
-
-    :param client: TrelloClient object
-    """
-    speak("What board do you want to add an item to a checklist?")
-    board_name = takeCommand().lower()
-    boards = client.list_boards()
-    for board in boards:
-        if board_name in board.name.lower():
-            speak("What list do you want to add an item to a checklist?")
-            list_name = takeCommand().lower()
-            lists = board.list_lists()
-            for list in lists:
-                if list_name in list.name.lower():
-                    speak("What card do you want to add an item to a checklist?")
-                    card_name = takeCommand().lower()
-                    cards = list.list_cards()
-                    for card in cards:
-                        if card_name in card.name.lower():
-                            speak("What checklist do you want to add an item to?")
-                            checklist_name = takeCommand().lower()
-                            checklists = card.checklists
-                            for checklist in checklists:
-                                if checklist_name in checklist.name.lower():
-                                    speak("What do you want to add to the checklist?")
-                                    item_name = takeCommand()
-                                    checklist.add_item(item_name)
-
-
 def add_list(client):
     """
     This function will add a list to a board
@@ -203,35 +172,6 @@ def archive_list(client):
             for list in lists:
                 if list_name in list.name.lower():
                     list.set_closed(True)
-
-
-def change_card_list(client):
-    """
-    This function will move a card to a different list
-
-    :param client: TrelloClient object
-    """
-    speak("What board do you want to move a card from?")
-    board_name = takeCommand().lower()
-    boards = client.list_boards()
-    for board in boards:
-        if board_name in board.name.lower():
-            speak("What list do you want to move a card from?")
-            list_name = takeCommand().lower()
-            lists = board.list_lists()
-            for list in lists:
-                if list_name in list.name.lower():
-                    speak("What card do you want to move?")
-                    card_name = takeCommand().lower()
-                    cards = list.list_cards()
-                    for card in cards:
-                        if card_name in card.name.lower():
-                            speak("What list do you want to move the card to?")
-                            new_list_name = takeCommand().lower()
-                            new_lists = board.list_lists()
-                            for new_list in new_lists:
-                                if new_list_name in new_list.name.lower():
-                                    card.change_list(new_list.id)
 
 
 def add_card(client):
@@ -413,7 +353,23 @@ def sendEmail(to, content):
     server.close()
 
 
-def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
+def main(
+    client,
+    open_board,
+    add_board,
+    update_board_name,
+    add_list,
+    update_list_name,
+    archive_list,
+    add_card,
+    open_card,
+    update_card_name,
+    delete_card,
+    speak,
+    wishMe,
+    takeCommand,
+    sendEmail,
+):
     query = takeCommand().lower()
 
     # All the commands said by user will be
@@ -443,15 +399,8 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
     elif "add list" in query:
         add_list(client)
 
-    elif "open list" in query:
-        open_list(client)
-
     elif "update list name" in query:
         update_list_name(client)
-
-    elif "move list" in query:
-        move_list(client)
-
     elif "archive list" in query:
         archive_list(client)
 
@@ -466,18 +415,6 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
 
     elif "delete card" in query:
         delete_card(client)
-
-    elif "add member" in query:
-        add_member(client)
-
-    elif "check member" in query:
-        check_member(client)
-
-    elif "check client guest workspaces" in query:
-        check_client_guest_workspaces(client)
-
-    elif "change card position" in query:
-        change_card_position(client)
 
     elif "open youtube" in query:
         speak("Here you go to Youtube\n")
@@ -548,7 +485,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
 
     elif "what's your name" in query or "what is your name" in query:
         speak(f"My name is {vaname}")
-        # print("My friends call me", vaname)
+    # print("My friends call me", vaname)
 
     elif "exit" in query:
         speak("Thanks for giving me your time")
@@ -692,7 +629,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
                 if ch:
                     Pypdf.write(ch)
 
-        # NPPR9-FWDCX-D2C8J-H872K-2YT43
+    # NPPR9-FWDCX-D2C8J-H872K-2YT43
     elif "jarvis" in query:
         wishMe()
         speak("Jarvis 1 point 0 in your service Mister")
@@ -745,7 +682,7 @@ def main(client, open_board, speak, wishMe, takeCommand, sendEmail):
         speak("How are you Buddy?")
         speak(vaname)
 
-        # most asked question from google Assistant
+    # most asked question from google Assistant
     elif "will you be my gf" in query or "will you be my bf" in query:
         speak("I'm not sure about, may be you should give me some time")
 
@@ -765,8 +702,23 @@ if __name__ == "__main__":
     # username()
 
     while True:
-
-        main(client, open_board, speak, wishMe, takeCommand, sendEmail)
+        main(
+            client,
+            open_board,
+            add_board,
+            update_board_name,
+            add_list,
+            update_list_name,
+            archive_list,
+            add_card,
+            open_card,
+            update_card_name,
+            delete_card,
+            speak,
+            wishMe,
+            takeCommand,
+            sendEmail,
+        )
 
         # elif "what is" in query or "who is" in query:
 
