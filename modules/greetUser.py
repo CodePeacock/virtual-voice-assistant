@@ -3,8 +3,6 @@ import shutil
 from voiceAssistant import speak
 from voiceAssistant import takeCommand
 
-VANAME = "Alice"
-
 
 def wishMe():
     """

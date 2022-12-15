@@ -5,7 +5,8 @@ engine = pyttsx3.init("sapi5")
 voices = engine.getProperty("voices")
 engine.setProperty("voice", voices[1].id)
 
-vaname = "Alice"
+
+r = sr.Recognizer()
 
 
 def speak(audio):
@@ -18,22 +19,30 @@ def speak(audio):
     engine.runAndWait()
 
 
-def fine_tune_audio(r, source):
-    # r.adjust_for_ambient_noise(source, duration=1)
-    print("Listening...")
-    r.pause_threshold = 1
-    result = r.listen(source)
-    print("Now you can speak...")
+# def fine_tune_audio(r, source):
+#     # r.adjust_for_ambient_noise(source, duration=1)
+#     print("Listening...")
+#     r.pause_threshold = 1
+#     r.energy_threshold = 300
+#     result = r.listen(r, source)
+#     print("Now you can speak...")
 
-    return result
+#     return result
 
 
 def takeCommand():
-
-    r = sr.Recognizer()
+    """
+    It takes a command from the user, and returns it as a string
+    :return: A string
+    """
 
     with sr.Microphone() as source:
-        audio = fine_tune_audio(r, source)
+        r.adjust_for_ambient_noise(source, duration=1)
+        print("Listening...")
+        r.pause_threshold = 1
+        r.energy_threshold = 10
+        print("Now you can speak...")
+        audio = r.listen(r, source)
     try:
         print("Recognizing...")
         query = r.recognize_google(audio, language="en-in")

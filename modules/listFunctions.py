@@ -5,9 +5,10 @@ from voiceAssistant import takeCommand
 
 def add_list(client):
     """
-    This function will add a list to a board
+    It takes a Trello client object as an argument, asks the user for the name of a board, and then
+    creates a new list on that board with a name that the user provides.
 
-    :param client: TrelloClient object
+    :param client: the Trello client object
     """
     speak("What board do you want to add a list to?")
     board_name = takeCommand().lower()
@@ -21,9 +22,10 @@ def add_list(client):
 
 def update_list_name(client):
     """
-    This function will update a list
+    This function takes in a Trello client object and asks the user for a board name, then a list name,
+    then a new list name. It then updates the list name to the new list name.
 
-    :param client: TrelloClient object
+    :param client: the Trello client
     """
     speak("What board do you want to update a list from?")
     board_name = takeCommand().lower()
@@ -42,7 +44,8 @@ def update_list_name(client):
 
 def archive_list(client):
     """
-    This function will archive a list
+    It takes a Trello client object as an argument, asks the user for a board name and a list name, and
+    then archives the list.
 
     :param client: TrelloClient object
     """
