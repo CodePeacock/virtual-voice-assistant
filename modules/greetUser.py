@@ -1,7 +1,10 @@
 import datetime
 import shutil
-from voiceAssistant import speak
-from voiceAssistant import takeCommand
+from modules.voiceAssistant import speak
+from modules.voiceAssistant import takeCommand, r, sr
+
+VANAME = "Alice"
+source = sr.Microphone
 
 
 def wishMe():
@@ -22,12 +25,12 @@ def wishMe():
     speak(f"I am {VANAME}")
 
 
-def username():
+def username(r,source):
     """
     It asks the user for a name, then greets the user with that name.
     """
     speak("What should i call you Buddy")
-    uname = takeCommand()
+    uname = takeCommand(r, source)
     speak("Welcome Buddy")
     speak(uname)
     columns = shutil.get_terminal_size().columns

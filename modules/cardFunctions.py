@@ -1,6 +1,5 @@
-from clientToken import client
-from voiceAssistant import speak
-from voiceAssistant import takeCommand
+from modules.voiceAssistant import speak
+from modules.voiceAssistant import takeCommand
 import webbrowser
 
 

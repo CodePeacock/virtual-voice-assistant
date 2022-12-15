@@ -30,7 +30,7 @@ def speak(audio):
 #     return result
 
 
-def takeCommand():
+def takeCommand(r, source):
     """
     It takes a command from the user, and returns it as a string
     :return: A string

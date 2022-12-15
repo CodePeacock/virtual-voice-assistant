@@ -1,10 +1,9 @@
-from clientToken import client
-from voiceAssistant import speak
-from voiceAssistant import takeCommand
+from modules.voiceAssistant import speak
+from modules.voiceAssistant import takeCommand
 import webbrowser
 
-board_list = [board.name.lower() for board in client.list_boards()]
-print(board_list)
+# board_list = [board.name.lower() for board in client.list_boards()]
+# print(board_list)
 
 
 def open_board(client):
