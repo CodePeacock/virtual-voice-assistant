@@ -41,7 +41,7 @@ def takeCommand():
         r.adjust_for_ambient_noise(source, duration=1)
         print("Listening...")
         r.pause_threshold = 1
-        r.energy_threshold = 300
+        r.energy_threshold = 10
         print("Now you can speak...")
         audio = r.listen(source)
     try:

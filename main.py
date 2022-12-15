@@ -6,6 +6,8 @@ import webbrowser
 import pyjokes
 
 # import requests
+import requests
+from functions.clientToken import client
 from twilio.rest import Client
 from functions.greetUser import VANAME, username, wishMe
 from functions.voiceAssistant import speak, takeCommand
@@ -204,6 +206,7 @@ if __name__ == "__main__":
 
     while True:
         main(
+            client=client,
             add_board=add_board,
             add_card=add_card,
             delete_card=delete_card,

@@ -1,7 +1,7 @@
 import datetime
 import shutil
 from functions.voiceAssistant import speak
-from functions.voiceAssistant import takeCommand, sr
+from functions.voiceAssistant import takeCommand, sr, r
 
 VANAME = "Alice"
 source = sr.Microphone
