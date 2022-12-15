@@ -4,7 +4,8 @@ import os
 import datetime
 import webbrowser
 import pyjokes
-import requests
+
+# import requests
 from twilio.rest import Client
 from functions.greetUser import VANAME, username, wishMe
 from functions.voiceAssistant import speak, takeCommand
@@ -135,35 +136,35 @@ def main(
 
     # NPPR9-FWDCX-D2C8J-H872K-2YT43
 
-    elif "weather" in query:
-        base_url = "http://api.openweathermap.org / data / 2.5 / weather?"
-        speak(" City name ")
-        print("City name : ")
-        city_name = takeCommand()
-        api_key = "Api key"
-        complete_url = f"{base_url}appid ={api_key}&q ={city_name}"
-        response = requests.get(complete_url)
-        x = response.json()
+    # elif "weather" in query:
+    #     base_url = "http://api.openweathermap.org / data / 2.5 / weather?"
+    #     speak(" City name ")
+    #     print("City name : ")
+    #     city_name = takeCommand()
+    #     api_key = "Api key"
+    #     complete_url = f"{base_url}appid ={api_key}&q ={city_name}"
+    #     response = requests.get(complete_url)
+    #     x = response.json()
 
-        if x["code"] != "404":
-            y = x["main"]
-            current_temperature = y["temp"]
-            current_pressure = y["pressure"]
-            current_humidiy = y["humidity"]
-            z = x["weather"]
-            weather_description = z[0]["description"]
-            print(
-                f" Temperature (in kelvin unit) = {str(current_temperature)}"
-                + "\n atmospheric pressure (in hPa unit) ="
-                + str(current_pressure)
-                + "\n humidity (in percentage) = "
-                + str(current_humidiy)
-                + "\n description = "
-                + str(weather_description)
-            )
+    #     if x["code"] != "404":
+    #         y = x["main"]
+    #         current_temperature = y["temp"]
+    #         current_pressure = y["pressure"]
+    #         current_humidiy = y["humidity"]
+    #         z = x["weather"]
+    #         weather_description = z[0]["description"]
+    #         print(
+    #             f" Temperature (in kelvin unit) = {str(current_temperature)}"
+    #             + "\n atmospheric pressure (in hPa unit) ="
+    #             + str(current_pressure)
+    #             + "\n humidity (in percentage) = "
+    #             + str(current_humidiy)
+    #             + "\n description = "
+    #             + str(weather_description)
+    #         )
 
-        else:
-            speak(" City Not Found ")
+    #     else:
+    #         speak(" City Not Found ")
 
     elif "send message " in query:
         # You need to create an account on Twilio to use this service
@@ -199,7 +200,7 @@ if __name__ == "__main__":
     # command before execution of this python file
     clear()
     wishMe()
-    username(r)
+    username()
 
     while True:
         main(

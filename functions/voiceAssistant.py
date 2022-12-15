@@ -15,7 +15,7 @@ def speak(audio):
 
     :param audio: The audio to be played
     """
-    engine.say(audio,name="Microsoft Zira Desktop - English (United States)")
+    engine.say(audio, name="Microsoft Zira Desktop - English (United States)")
     engine.runAndWait()
 
 
