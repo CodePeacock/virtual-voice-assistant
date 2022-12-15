@@ -30,7 +30,7 @@ def speak(audio):
 #     return result
 
 
-def takeCommand(r, source):
+def takeCommand(r):
     """
     It takes a command from the user, and returns it as a string
     :return: A string
@@ -42,7 +42,7 @@ def takeCommand(r, source):
         r.pause_threshold = 1
         r.energy_threshold = 10
         print("Now you can speak...")
-        audio = r.listen(r, source)
+        audio = r.listen(source)
     try:
         print("Recognizing...")
         query = r.recognize_google(audio, language="en-in")

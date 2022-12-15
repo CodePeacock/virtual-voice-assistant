@@ -14,18 +14,18 @@ from twilio.rest import Client
 from clint.textui import progress
 from ecapture import ecapture as ec
 from urllib.request import urlopen
-from modules.greetUser import username, wishMe
-from modules.voiceAssistant import speak, takeCommand
+from functions.greetUser import username, wishMe
+from functions.voiceAssistant import speak, takeCommand
 import datetime
 import wikipedia
 import webbrowser
 import os
 import pyjokes
-from modules.voiceAssistant import takeCommand, r, sr
-from modules.boardFunctions import *
-from modules.cardFunctions import *
-from modules.listFunctions import *
-from modules.cardChecklistFunctions import *
+from functions.voiceAssistant import *
+from functions.boardFunctions import *
+from functions.cardFunctions import *
+from functions.listFunctions import *
+from functions.cardChecklistFunctions import *
 
 source = sr.Microphone
 
@@ -376,7 +376,7 @@ if __name__ == "__main__":
     # command before execution of this python file
     clear()
     wishMe()
-    username(r, source)
+    username(r)
 
     while True:
         main(

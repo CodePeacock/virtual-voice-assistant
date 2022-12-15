@@ -1,5 +1,5 @@
-from modules.voiceAssistant import speak
-from modules.voiceAssistant import takeCommand
+from functions.voiceAssistant import speak
+from functions.voiceAssistant import takeCommand
 import webbrowser
 
 # board_list = [board.name.lower() for board in client.list_boards()]

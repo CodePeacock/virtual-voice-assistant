@@ -1,7 +1,7 @@
 import datetime
 import shutil
-from modules.voiceAssistant import speak
-from modules.voiceAssistant import takeCommand, r, sr
+from functions.voiceAssistant import speak
+from functions.voiceAssistant import takeCommand, r, sr
 
 VANAME = "Alice"
 source = sr.Microphone
@@ -10,7 +10,7 @@ source = sr.Microphone
 def wishMe():
     """
     It takes the current hour and if it's between 0 and 1p, it says "Good Morning", if it's between 12
-    and 18, it says "Good Afternoon", and if it's between 18 and 24, it says "Good Evening".
+    and 18, it says "Gqqqqood Afternoon", and if it's between 18 and 24, it says "Good Evening".
     """
     hour = int(datetime.datetime.now().hour)
     if hour >= 0 and hour < 12:
@@ -25,12 +25,12 @@ def wishMe():
     speak(f"I am {VANAME}")
 
 
-def username(r,source):
+def username(r):
     """
     It asks the user for a name, then greets the user with that name.
     """
     speak("What should i call you Buddy")
-    uname = takeCommand(r, source)
+    uname = takeCommand(r)
     speak("Welcome Buddy")
     speak(uname)
     columns = shutil.get_terminal_size().columns

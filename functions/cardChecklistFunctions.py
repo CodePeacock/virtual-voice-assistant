@@ -1,5 +1,5 @@
-from modules.voiceAssistant import speak
-from modules.voiceAssistant import takeCommand
+from functions.voiceAssistant import speak
+from functions.voiceAssistant import takeCommand
 
 
 def add_checklist(client):
