@@ -5,10 +5,8 @@ import datetime
 import webbrowser
 import pyjokes
 
-# import requests
-import requests
+
 from functions.clientToken import client
-from twilio.rest import Client
 from functions.greetUser import VANAME, username, wishMe
 from functions.voiceAssistant import speak, takeCommand
 from functions.voiceAssistant import *
@@ -35,6 +33,41 @@ def main(
     speak,
     takeCommand,
 ):
+    """
+    It takes a string as input and returns a string as output.
+
+    The input string is the user's voice command.
+
+    The output string is the text that the computer will speak back to the user.
+
+    The function is called with the user's voice command as the input argument.
+
+    The function returns the text that the computer will speak back to the user.
+
+    The text that the computer will speak back to the user is assigned to the variable response.
+
+    The computer speaks the text in the variable response.
+
+    The function is called again with the user's next voice command as the input argument.
+
+    The function returns the text that the computer will speak back to the user.
+
+    The text that the computer will speak back to the user is assigned to the variable response.
+
+    :param client: The Trello client object
+    :param open_board: Opens a board
+    :param add_board: Add a new board
+    :param update_board_name: This function will update the name of the board
+    :param add_list: Adds a list to a board
+    :param update_list_name: This function will update the name of the list
+    :param archive_list: Archives a list
+    :param add_card: Adds a card to a list
+    :param open_card: Opens a card in the browser
+    :param update_card_name: This function will update the name of the card
+    :param delete_card: Deletes a card
+    :param speak: This is the function that will speak the text that is passed to it
+    :param takeCommand: This function takes microphone input from the user and returns string output
+    """
     query = takeCommand().lower()
 
     if "open trello" in query:
@@ -69,26 +102,6 @@ def main(
     elif "delete card" in query:
         delete_card(client)
 
-    elif "open youtube" in query:
-        speak("Here you go to Youtube\n")
-        webbrowser.open("youtube.com")
-
-    elif "open google" in query:
-        speak("Here you go to Google\n")
-        webbrowser.open("google.com")
-
-    elif "open stackoverflow" in query:
-        speak("Here you go to Stack Over flow.Happy coding")
-        webbrowser.open("stackoverflow.com")
-
-    # elif "play music" in query or "play song" in query:
-    #     speak("Here you go with music")
-    #     # music_dir = "G:\\Song"
-    #     music_dir = "C:\\Users\\GAURAV\\Music"
-    #     songs = os.listdir(music_dir)
-    #     print(songs)
-    #     random = os.startfile(os.path.join(music_dir, songs[1]))
-
     elif "the time" in query:
         strTime = datetime.datetime.now().strftime("% H:% M:% S")
         speak(f"Sir, the time is {strTime}")
@@ -121,52 +134,10 @@ def main(
         speak(pyjokes.get_joke())
         print(pyjokes.get_joke())
 
-    # elif "calculate" in query:
-    #     app_id = "Wolframalpha api id"
-    #     client = wolframalpha.Client(app_id)
-    #     indx = query.lower().split().index("calculate")
-    #     query = query.split()[indx + 1 :]
-    #     res = client.query(" ".join(query))
-    #     answer = next(res.results).text
-    #     print(f"The answer is {answer}")
-    #     speak(f"The answer is {answer}")
-
     elif "search" in query or "play" in query:
         query = query.replace("search", "")
         query = query.replace("play", "")
         webbrowser.open(query)
-
-    # NPPR9-FWDCX-D2C8J-H872K-2YT43
-
-    # elif "weather" in query:
-    #     base_url = "http://api.openweathermap.org / data / 2.5 / weather?"
-    #     speak(" City name ")
-    #     print("City name : ")
-    #     city_name = takeCommand()
-    #     api_key = "Api key"
-    #     complete_url = f"{base_url}appid ={api_key}&q ={city_name}"
-    #     response = requests.get(complete_url)
-    #     x = response.json()
-
-    #     if x["code"] != "404":
-    #         y = x["main"]
-    #         current_temperature = y["temp"]
-    #         current_pressure = y["pressure"]
-    #         current_humidiy = y["humidity"]
-    #         z = x["weather"]
-    #         weather_description = z[0]["description"]
-    #         print(
-    #             f" Temperature (in kelvin unit) = {str(current_temperature)}"
-    #             + "\n atmospheric pressure (in hPa unit) ="
-    #             + str(current_pressure)
-    #             + "\n humidity (in percentage) = "
-    #             + str(current_humidiy)
-    #             + "\n description = "
-    #             + str(weather_description)
-    #         )
-
-    #     else:
-    #         speak(" City Not Found ")
 
     elif "send message " in query:
         # You need to create an account on Twilio to use this service
@@ -220,20 +191,3 @@ if __name__ == "__main__":
             update_board_name=update_board_name,
             update_list_name=update_list_name,
         )
-
-        # elif "what is" in query or "who is" in query:
-
-        #     # Use the same API key
-        #     # that we have generated earlier
-        #     client = wolframalpha.Client("API_ID")
-        #     res = client.query(query)
-
-        #     try:
-        #         print(next(res.results).text)
-        #         speak(next(res.results).text)
-        #     except StopIteration:
-        #         print("No results")
-
-        # elif "" in query:
-        # Command go here
-        # For adding more commands
