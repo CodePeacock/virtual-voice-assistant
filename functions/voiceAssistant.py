@@ -30,7 +30,8 @@ def speak(audio):
 #     return result
 
 
-def takeCommand(r):
+def takeCommand():
+    # sourcery skip: extract-method, inline-immediately-returned-variable
     """
     It takes a command from the user, and returns it as a string
     :return: A string
@@ -40,7 +41,7 @@ def takeCommand(r):
         r.adjust_for_ambient_noise(source, duration=1)
         print("Listening...")
         r.pause_threshold = 1
-        r.energy_threshold = 10
+        r.energy_threshold = 300
         print("Now you can speak...")
         audio = r.listen(source)
     try:

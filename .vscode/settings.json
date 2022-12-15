@@ -1,5 +1,6 @@
 {
     "python.analysis.extraPaths": [
         "./modules"
-    ]
+    ],
+    "python.analysis.typeCheckingMode": "off"
 }

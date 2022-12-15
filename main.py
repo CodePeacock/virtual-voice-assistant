@@ -1,33 +1,19 @@
 import os
-import subprocess
 import wolframalpha
-import json
 import datetime
-import wikipedia
 import webbrowser
-import winshell
 import pyjokes
-import ctypes
-import time
 import requests
 from twilio.rest import Client
-from clint.textui import progress
-from ecapture import ecapture as ec
-from urllib.request import urlopen
-from functions.greetUser import username, wishMe
+from functions.greetUser import VANAME, username, wishMe
 from functions.voiceAssistant import speak, takeCommand
-import datetime
-import wikipedia
-import webbrowser
-import os
-import pyjokes
 from functions.voiceAssistant import *
 from functions.boardFunctions import *
 from functions.cardFunctions import *
 from functions.listFunctions import *
 from functions.cardChecklistFunctions import *
 
-source = sr.Microphone
+vaname = VANAME
 
 
 def main(
@@ -43,25 +29,11 @@ def main(
     update_card_name,
     delete_card,
     speak,
-    wishMe,
     takeCommand,
-    sendEmail,
 ):
     query = takeCommand().lower()
 
-    # All the commands said by user will be
-    # stored here in 'query' and will be
-    # converted to lower case for easily
-    # recognition of command
-    if "wikipedia" in query:
-        speak("Searching Wikipedia...")
-        query = query.replace("wikipedia", "")
-        results = wikipedia.summary(query, sentences=3)
-        speak("According to Wikipedia")
-        print(results)
-        speak(results)
-
-    elif "open trello" in query:
+    if "open trello" in query:
         webbrowser.open("https://trello.com/")
 
     elif "open board" in query:
@@ -105,44 +77,17 @@ def main(
         speak("Here you go to Stack Over flow.Happy coding")
         webbrowser.open("stackoverflow.com")
 
-    elif "play music" in query or "play song" in query:
-        speak("Here you go with music")
-        # music_dir = "G:\\Song"
-        music_dir = "C:\\Users\\GAURAV\\Music"
-        songs = os.listdir(music_dir)
-        print(songs)
-        random = os.startfile(os.path.join(music_dir, songs[1]))
+    # elif "play music" in query or "play song" in query:
+    #     speak("Here you go with music")
+    #     # music_dir = "G:\\Song"
+    #     music_dir = "C:\\Users\\GAURAV\\Music"
+    #     songs = os.listdir(music_dir)
+    #     print(songs)
+    #     random = os.startfile(os.path.join(music_dir, songs[1]))
 
     elif "the time" in query:
         strTime = datetime.datetime.now().strftime("% H:% M:% S")
         speak(f"Sir, the time is {strTime}")
-
-    elif "open opera" in query:
-        codePath = r"C:\\Users\\GAURAV\\AppData\\Local\\Programs\\Opera\\launcher.exe"
-        os.startfile(codePath)
-
-    elif "email to gaurav" in query:
-        try:
-            speak("What should I say?")
-            content = takeCommand()
-            to = "Receiver email address"
-            sendEmail(to, content)
-            speak("Email has been sent !")
-        except Exception as e:
-            print(e)
-            speak("I am not able to send this email")
-
-    elif "send a mail" in query:
-        try:
-            speak("What should I say?")
-            content = takeCommand()
-            speak("whome should i send")
-            to = input()
-            sendEmail(to, content)
-            speak("Email has been sent !")
-        except Exception as e:
-            print(e)
-            speak("I am not able to send this email")
 
     elif "how are you" in query:
         speak("I am fine, Thank you")
@@ -161,15 +106,12 @@ def main(
         speak("Thanks for naming me")
 
     elif "what's your name" in query or "what is your name" in query:
-        speak(f"My name is {VANAME}")
+        speak(f"My name is {vaname}")
     # print("My friends call me", VANAME)
 
     elif "exit" in query:
         speak("Thanks for giving me your time")
         exit()
-
-    elif "who made you" in query or "who created you" in query:
-        speak("I have been created by Achsah & Mayur.")
 
     elif "joke" in query:
         speak(pyjokes.get_joke())
@@ -190,127 +132,7 @@ def main(
         query = query.replace("play", "")
         webbrowser.open(query)
 
-    elif "who i am" in query:
-        speak("If you talk then definitely your human.")
-
-    elif "why you came to world" in query:
-        speak("Thanks to Gaurav. further It's a secret")
-
-    elif "power point presentation" in query:
-        speak("opening Power Point presentation")
-        power = r"C:\\Users\\GAURAV\\Desktop\\Minor Project\\Presentation\\Voice Assistant.pptx"
-        os.startfile(power)
-
-    elif "is love" in query:
-        speak("It is 7th sense that destroy all other senses")
-
-    elif "who are you" in query:
-        speak("I am your virtual assistant created by Gaurav")
-
-    elif "reason for you" in query:
-        speak("I was created as a Minor project by Mister Gaurav ")
-
-    elif "change background" in query:
-        ctypes.windll.user32.SystemParametersInfoW(20, 0, "Location of wallpaper", 0)
-        speak("Background changed successfully")
-
-    elif "open bluestack" in query:
-        appli = r"C:\\ProgramData\\BlueStacks\\Client\\Bluestacks.exe"
-        os.startfile(appli)
-
-    elif "news" in query:
-        try:
-            jsonObj = urlopen(
-                """https://newsapi.org / v1 / articles?source = the-times-of-india&sortBy = top&apiKey =\\times of India Api key\\"""
-            )
-            data = json.load(jsonObj)
-            speak("here are some top news from the times of india")
-            print("""=============== TIMES OF INDIA ============""" + "\n")
-
-            for i, item in enumerate(data["articles"], start=1):
-                print(f"{str(i)}. " + item["title"] + "\n")
-                print(item["description"] + "\n")
-                speak(f"{str(i)}. " + item["title"] + "\n")
-        except Exception as e:
-            print(e)
-
-    elif "lock window" in query:
-        speak("locking the device")
-        ctypes.windll.user32.LockWorkStation()
-
-    elif "shutdown system" in query:
-        speak("Hold On a Sec ! Your system is on its way to shut down")
-        subprocess.call("shutdown / p /f")
-
-    elif "empty recycle bin" in query:
-        winshell.recycle_bin().empty(confirm=False, show_progress=False, sound=True)
-        speak("Recycle Bin Recycled")
-
-    elif "don't listen" in query or "stop listening" in query:
-        speak("for how much time you want to stop jarvis from listening commands")
-        a = int(takeCommand())
-        time.sleep(a)
-        print(a)
-
-    elif "where is" in query:
-        query = query.replace("where is", "")
-        location = query
-        speak("User asked to Locate")
-        speak(location)
-        webbrowser.open(f"https://www.google.com / maps / place/{location}")
-
-    elif "camera" in query or "take a photo" in query:
-        ec.capture(0, "Jarvis Camera ", "img.jpg")
-
-    elif "restart" in query:
-        subprocess.call(["shutdown", "/r"])
-
-    elif "hibernate" in query or "sleep" in query:
-        speak("Hibernating")
-        subprocess.call("shutdown / h")
-
-    elif "log off" in query or "sign out" in query:
-        speak("Make sure all the application are closed before sign-out")
-        time.sleep(5)
-        subprocess.call(["shutdown", "/l"])
-
-    elif "write a note" in query:
-        speak("What should i write, sir")
-        note = takeCommand()
-        file = open("jarvis.txt", "w")
-        speak("Sir, Should i include date and time")
-        snfm = takeCommand()
-        if "yes" in snfm or "sure" in snfm:
-            strTime = datetime.datetime.now().strftime("% H:% M:% S")
-            file.write(strTime)
-            file.write(" :- ")
-        file.write(note)
-    elif "show note" in query:
-        speak("Showing Notes")
-        file = open("jarvis.txt", "r")
-        print(file.read())
-        speak(file.read(6))
-
-    elif "update assistant" in query:
-        speak("After downloading file please replace this file with the downloaded one")
-        url = "# url after uploading file"
-        r = requests.get(url, stream=True)
-
-        with open("Voice.py", "wb") as Pypdf:
-            total_length = int(r.headers.get("content-length"))
-
-            for ch in progress.bar(
-                r.iter_content(chunk_size=2391975),
-                expected_size=(total_length / 1024) + 1,
-            ):
-                if ch:
-                    Pypdf.write(ch)
-
     # NPPR9-FWDCX-D2C8J-H872K-2YT43
-    elif "jarvis" in query:
-        wishMe()
-        speak("Jarvis 1 point 0 in your service Mister")
-        speak(VANAME)
 
     elif "weather" in query:
         base_url = "http://api.openweathermap.org / data / 2.5 / weather?"
@@ -357,7 +179,7 @@ def main(
     elif "Good Morning" in query:
         speak(f"A warm{query}")
         speak("How are you Buddy?")
-        speak(VANAME)
+        speak(vaname)
 
     # most asked question from google Assistant
     elif "will you be my gf" in query or "will you be my bf" in query:
@@ -380,19 +202,18 @@ if __name__ == "__main__":
 
     while True:
         main(
-            # client,
-            open_board,
-            add_board,
-            update_board_name,
-            add_list,
-            update_list_name,
-            archive_list,
-            add_card,
-            open_card,
-            update_card_name,
-            delete_card,
-            speak,
-            takeCommand,
+            add_board=add_board,
+            add_card=add_card,
+            delete_card=delete_card,
+            update_card_name=update_card_name,
+            open_card=open_card,
+            open_board=open_board,
+            add_list=add_list,
+            archive_list=archive_list,
+            speak=speak,
+            takeCommand=takeCommand,
+            update_board_name=update_board_name,
+            update_list_name=update_list_name,
         )
 
         # elif "what is" in query or "who is" in query:
