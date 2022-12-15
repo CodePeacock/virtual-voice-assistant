@@ -4,9 +4,9 @@ from functions.voiceAssistant import takeCommand
 
 def add_checklist(client):
     """
-    This function will add a checklist to a card
+    It adds a checklist to a card.
 
-    :param client: TrelloClient object
+    :param client: the Trello client
     """
     speak("What board do you want to add a checklist to?")
     board_name = takeCommand().lower()

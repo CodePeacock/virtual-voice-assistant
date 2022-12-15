@@ -1,5 +1,6 @@
 import os
-import wolframalpha
+
+# import wolframalpha
 import datetime
 import webbrowser
 import pyjokes
@@ -117,15 +118,15 @@ def main(
         speak(pyjokes.get_joke())
         print(pyjokes.get_joke())
 
-    elif "calculate" in query:
-        app_id = "Wolframalpha api id"
-        client = wolframalpha.Client(app_id)
-        indx = query.lower().split().index("calculate")
-        query = query.split()[indx + 1 :]
-        res = client.query(" ".join(query))
-        answer = next(res.results).text
-        print(f"The answer is {answer}")
-        speak(f"The answer is {answer}")
+    # elif "calculate" in query:
+    #     app_id = "Wolframalpha api id"
+    #     client = wolframalpha.Client(app_id)
+    #     indx = query.lower().split().index("calculate")
+    #     query = query.split()[indx + 1 :]
+    #     res = client.query(" ".join(query))
+    #     answer = next(res.results).text
+    #     print(f"The answer is {answer}")
+    #     speak(f"The answer is {answer}")
 
     elif "search" in query or "play" in query:
         query = query.replace("search", "")
