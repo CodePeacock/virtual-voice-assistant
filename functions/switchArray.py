@@ -21,6 +21,7 @@ class trello_Array:
             "open card": self.open_card,
             "update card name": self.update_card_name,
             "delete card": self.delete_card,
+            "exit": self.exit,
         }
 
     def open_board(self):
@@ -55,6 +56,9 @@ class trello_Array:
 
     def add_checklist(self):
         cardChecklistFunctions.add_checklist(self.client)
+
+    def exit(self):
+        exit()
 
     def run(self, query):
         self.switch.get(query, lambda: print("Invalid"))()
