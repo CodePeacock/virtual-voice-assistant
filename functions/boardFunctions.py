@@ -45,3 +45,20 @@ def update_board_name(client):
             speak("What do you want to update the board name to?")
             new_board_name = takeCommand()
             board.set_name(new_board_name)
+            speak("Board name updated")
+
+
+def close_and_archive_board(client):
+    """
+    This function will close and archive a board
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to close and archive?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            board.close()
+            board.set_closed(True)
+            speak("Board closed and archived")

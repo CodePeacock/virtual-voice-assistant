@@ -21,6 +21,7 @@ def using_switchArray():
         "open trello": boardFunctions.open_board,
         "add board": boardFunctions.add_board,
         "update board name": boardFunctions.update_board_name,
+        "delete board": boardFunctions.close_and_archive_board,
         "add list": listFunctions.add_list,
         "update list name": listFunctions.update_list_name,
         "archive list": listFunctions.archive_list,
