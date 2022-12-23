@@ -17,6 +17,7 @@ def using_switchArray():
     It takes a command from the user, and if the command is in the switchArray, it executes the function
     associated with that command
     """
+    # A dictionary.
     switchArray = {
         "open trello": boardFunctions.open_board,
         "add board": boardFunctions.add_board,
@@ -41,6 +42,7 @@ def using_switchArray():
         voiceAssistant.speak("Sorry, I didn't understand that")
 
 
+# A way to run the main function only when you want to run the script directly.
 if __name__ == "__main__":
 
     def clear():

@@ -1,3 +1,4 @@
+from pprint import pprint
 from functions.voiceAssistant import speak
 from functions.voiceAssistant import takeCommand
 import webbrowser
@@ -5,6 +6,27 @@ import webbrowser
 # board_list = [board.name.lower() for board in client.list_boards()]
 # print(board_list)
 
+
+def get_all_boards(client):
+    """
+    This function will return a list of all the boards in the user's account
+
+    :param client: TrelloClient object
+    """
+    boards = client.list_boards()
+    for board in boards:
+        # print(board.name)
+        print(board.id)
+
+def add_board(client):
+    """
+    This function will add a board to the user's account
+
+    :param client: TrelloClient object
+    """
+    speak("What do you want to name your board?")
+    board_name = takeCommand()
+    client.add_board(board_name)
 
 def open_board(client):
     """
@@ -18,18 +40,6 @@ def open_board(client):
     for board in boards:
         if board_name in board.name.lower():
             webbrowser.open(board.url)
-
-
-def add_board(client):
-    """
-    This function will add a board to the user's account
-
-    :param client: TrelloClient object
-    """
-    speak("What do you want to name your board?")
-    board_name = takeCommand()
-    client.add_board(board_name)
-
 
 def update_board_name(client):
     """
