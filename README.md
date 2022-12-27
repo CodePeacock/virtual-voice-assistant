@@ -1,4 +1,4 @@
-[![Voice Assistant](https://github.com/FireStorm69/virtual-voice-assistant/actions/workflows/python-app.yml/badge.svg)](https://github.com/FireStorm69/virtual-voice-assistant/actions/workflows/python-app.yml)
+[![Voice Assistant](https://github.com/FireStorm69/virtual-voice-assistant/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/FireStorm69/virtual-voice-assistant/actions/workflows/python-app.yml)
 
 # Voice Assistant Written in Python
 
