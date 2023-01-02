@@ -24,23 +24,23 @@ This project provides an easy-to-use solution for integrating a voice assistant 
 
 ## Installation
 
- ### 1. Clone the repository:
+  1. Clone the repository:
  
     `git clone https://github.com/your-username/voice-assistant-trello-integration.git`
     
- ### 2. Install the required packages:
+  2. Install the required packages:
  
     `pip install -r requirements.txt`
     
- ### 3. Create a Trello API key and token:
+  3. Create a Trello API key and token:
  
     `https://developers.trello.com/get-started/start-building`
     
- ### 4. Set up the Trello API key and token in the environment file:
+  4. Set up the Trello API key and token in the environment file:
  
     `.env`
     
- ### 5. Run the project:
+  5. Run the project:
  
     `python main.py`
 
