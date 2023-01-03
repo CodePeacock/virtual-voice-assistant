@@ -1,0 +1,766 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1" />
+<meta name="generator" content="pdoc 0.10.0" />
+<title>pdoc.web API documentation</title>
+<meta name="description" content="" />
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/sanitize.min.css" integrity="sha256-PK9q560IAAa6WVRRh76LtCaI8pjTJ2z11v0miyNNjrs=" crossorigin>
+<link rel="preload stylesheet" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/10up-sanitize.css/11.0.1/typography.min.css" integrity="sha256-7l/o7C8jubJiy74VsKTidCy1yBkRtiUGbVkYBylBqUg=" crossorigin>
+<link rel="stylesheet preload" as="style" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/styles/github.min.css" crossorigin>
+<style>:root{--highlight-color:#fe9}.flex{display:flex !important}body{line-height:1.5em}#content{padding:20px}#sidebar{padding:30px;overflow:hidden}#sidebar > *:last-child{margin-bottom:2cm}.http-server-breadcrumbs{font-size:130%;margin:0 0 15px 0}#footer{font-size:.75em;padding:5px 30px;border-top:1px solid #ddd;text-align:right}#footer p{margin:0 0 0 1em;display:inline-block}#footer p:last-child{margin-right:30px}h1,h2,h3,h4,h5{font-weight:300}h1{font-size:2.5em;line-height:1.1em}h2{font-size:1.75em;margin:1em 0 .50em 0}h3{font-size:1.4em;margin:25px 0 10px 0}h4{margin:0;font-size:105%}h1:target,h2:target,h3:target,h4:target,h5:target,h6:target{background:var(--highlight-color);padding:.2em 0}a{color:#058;text-decoration:none;transition:color .3s ease-in-out}a:hover{color:#e82}.title code{font-weight:bold}h2[id^="header-"]{margin-top:2em}.ident{color:#900}pre code{background:#f8f8f8;font-size:.8em;line-height:1.4em}code{background:#f2f2f1;padding:1px 4px;overflow-wrap:break-word}h1 code{background:transparent}pre{background:#f8f8f8;border:0;border-top:1px solid #ccc;border-bottom:1px solid #ccc;margin:1em 0;padding:1ex}#http-server-module-list{display:flex;flex-flow:column}#http-server-module-list div{display:flex}#http-server-module-list dt{min-width:10%}#http-server-module-list p{margin-top:0}.toc ul,#index{list-style-type:none;margin:0;padding:0}#index code{background:transparent}#index h3{border-bottom:1px solid #ddd}#index ul{padding:0}#index h4{margin-top:.6em;font-weight:bold}@media (min-width:200ex){#index .two-column{column-count:2}}@media (min-width:300ex){#index .two-column{column-count:3}}dl{margin-bottom:2em}dl dl:last-child{margin-bottom:4em}dd{margin:0 0 1em 3em}#header-classes + dl > dd{margin-bottom:3em}dd dd{margin-left:2em}dd p{margin:10px 0}.name{background:#eee;font-weight:bold;font-size:.85em;padding:5px 10px;display:inline-block;min-width:40%}.name:hover{background:#e0e0e0}dt:target .name{background:var(--highlight-color)}.name > span:first-child{white-space:nowrap}.name.class > span:nth-child(2){margin-left:.4em}.inherited{color:#999;border-left:5px solid #eee;padding-left:1em}.inheritance em{font-style:normal;font-weight:bold}.desc h2{font-weight:400;font-size:1.25em}.desc h3{font-size:1em}.desc dt code{background:inherit}.source summary,.git-link-div{color:#666;text-align:right;font-weight:400;font-size:.8em;text-transform:uppercase}.source summary > *{white-space:nowrap;cursor:pointer}.git-link{color:inherit;margin-left:1em}.source pre{max-height:500px;overflow:auto;margin:0}.source pre code{font-size:12px;overflow:visible}.hlist{list-style:none}.hlist li{display:inline}.hlist li:after{content:',\2002'}.hlist li:last-child:after{content:none}.hlist .hlist{display:inline;padding-left:1em}img{max-width:100%}td{padding:0 .5em}.admonition{padding:.1em .5em;margin-bottom:1em}.admonition-title{font-weight:bold}.admonition.note,.admonition.info,.admonition.important{background:#aef}.admonition.todo,.admonition.versionadded,.admonition.tip,.admonition.hint{background:#dfd}.admonition.warning,.admonition.versionchanged,.admonition.deprecated{background:#fd4}.admonition.error,.admonition.danger,.admonition.caution{background:lightpink}</style>
+<style media="screen and (min-width: 700px)">@media screen and (min-width:700px){#sidebar{width:30%;height:100vh;overflow:auto;position:sticky;top:0}#content{width:70%;max-width:100ch;padding:3em 4em;border-left:1px solid #ddd}pre code{font-size:1em}.item .name{font-size:1em}main{display:flex;flex-direction:row-reverse;justify-content:flex-end}.toc ul ul,#index ul{padding-left:1.5em}.toc > ul > li{margin-top:.5em}}</style>
+<style media="print">@media print{#sidebar h1{page-break-before:always}.source{display:none}}@media print{*{background:transparent !important;color:#000 !important;box-shadow:none !important;text-shadow:none !important}a[href]:after{content:" (" attr(href) ")";font-size:90%}a[href][title]:after{content:none}abbr[title]:after{content:" (" attr(title) ")"}.ir a:after,a[href^="javascript:"]:after,a[href^="#"]:after{content:""}pre,blockquote{border:1px solid #999;page-break-inside:avoid}thead{display:table-header-group}tr,img{page-break-inside:avoid}img{max-width:100% !important}@page{margin:0.5cm}p,h2,h3{orphans:3;widows:3}h1,h2,h3,h4,h5,h6{page-break-after:avoid}}</style>
+<script defer src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.1.1/highlight.min.js" integrity="sha256-Uv3H6lx7dJmRfRvH8TH6kJD1TSK1aFcwgx+mdg3epi8=" crossorigin></script>
+<script>window.addEventListener('DOMContentLoaded', () => hljs.initHighlighting())</script>
+</head>
+<body>
+<main>
+<article id="content">
+<header>
+<h1 class="title">Module <code>pdoc.web</code></h1>
+</header>
+<section id="section-intro">
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">import http.server
+import re
+import os.path
+import logging
+
+import pdoc.doc
+import pdoc.render
+import pdoc.extract
+
+
+class DocHandler(http.server.BaseHTTPRequestHandler):
+    def do_HEAD(self):
+        if self.path != &#34;/&#34;:
+            out = self.html()
+            if out is None:
+                self.send_response(404)
+                self.end_headers()
+                return
+
+        self.send_response(200)
+        self.send_header(&#34;Content-type&#34;, &#34;text/html&#34;)
+        self.end_headers()
+
+    def do_GET(self):
+        if self.path == &#34;/&#34;:
+            midx = []
+            for m in self.server.modules:
+                midx.append((m.name, m.docstring))
+            midx = sorted(midx, key=lambda x: x[0].lower())
+            out = pdoc.render.html_index(midx, self.server.args.link_prefix)
+        elif self.path.endswith(&#34;.ext&#34;):
+            # External links are a bit weird. You should view them as a giant
+            # hack. Basically, the idea is to &#34;guess&#34; where something lives
+            # when documenting another module and hope that guess can actually
+            # track something down in a more global context.
+            #
+            # The idea here is to start specific by looking for HTML that
+            # exists that matches the full external path given. Then trim off
+            # one component at the end and try again.
+            #
+            # If no HTML is found, then we ask `pdoc` to do its thang on the
+            # parent module in the external path. If all goes well, that
+            # module will then be able to find the external identifier.
+
+            import_path = self.path[:-4].lstrip(&#34;/&#34;)
+            resolved = self.resolve_ext(import_path)
+            if resolved is None:  # Try to generate the HTML...
+                logging.info(&#34;Generating HTML for %s on the fly...&#34; % import_path)
+                self.html(import_path.split(&#34;.&#34;)[0])
+
+                # Try looking once more.
+                resolved = self.resolve_ext(import_path)
+            if resolved is None:  # All hope is lost.
+                self.send_response(404)
+                self.send_header(&#34;Content-type&#34;, &#34;text/html&#34;)
+                self.end_headers()
+                self.echo(
+                    &#34;External identifier &lt;code&gt;%s&lt;/code&gt; not found.&#34; % import_path
+                )
+                return
+            self.send_response(302)
+            self.send_header(&#34;Location&#34;, resolved)
+            self.end_headers()
+            return
+        else:
+            out = self.html()
+            if out is None:
+                self.send_response(404)
+                self.send_header(&#34;Content-type&#34;, &#34;text/html&#34;)
+                self.end_headers()
+
+                err = &#34;Module &lt;code&gt;%s&lt;/code&gt; not found.&#34; % self.import_path
+                self.echo(err)
+                return
+
+        self.send_response(200)
+        self.send_header(&#34;Content-type&#34;, &#34;text/html&#34;)
+        self.end_headers()
+        self.echo(out)
+
+    def echo(self, s):
+        self.wfile.write(s.encode(&#34;utf-8&#34;))
+
+    def html(self):
+        &#34;&#34;&#34;
+        Retrieves and sends the HTML belonging to the path given in
+        URL. This method is smart and will look for HTML files already
+        generated and account for whether they are stale compared to
+        the source code.
+        &#34;&#34;&#34;
+        # Deny favico shortcut early.
+        if self.path == &#34;/favicon.ico&#34;:
+            return None
+        return pdoc.render.html_module(pdoc.extract.extract_module(self.import_path))
+
+    def resolve_ext(self, import_path):
+        def exists(p):
+            p = os.path.join(self.server.args.html_dir, p)
+            pkg = os.path.join(p, pdoc.render.html_package_name)
+            mod = p + pdoc.render.html_module_suffix
+
+            if os.path.isfile(pkg):
+                return pkg[len(self.server.args.html_dir) :]
+            elif os.path.isfile(mod):
+                return mod[len(self.server.args.html_dir) :]
+            return None
+
+        parts = import_path.split(&#34;.&#34;)
+        for i in range(len(parts), 0, -1):
+            p = os.path.join(*parts[0:i])
+            realp = exists(p)
+            if realp is not None:
+                return &#34;/%s#%s&#34; % (realp.lstrip(&#34;/&#34;), import_path)
+        return None
+
+    @property
+    def file_path(self):
+        fp = os.path.join(self.server.args.html_dir, *self.import_path.split(&#34;.&#34;))
+        pkgp = os.path.join(fp, pdoc.render.html_package_name)
+        if os.path.isdir(fp) and os.path.isfile(pkgp):
+            fp = pkgp
+        else:
+            fp += pdoc.render.html_module_suffix
+        return fp
+
+    @property
+    def import_path(self):
+        pieces = self.clean_path.split(&#34;/&#34;)
+        if pieces[-1].startswith(pdoc.render.html_package_name):
+            pieces = pieces[:-1]
+        if pieces[-1].endswith(pdoc.render.html_module_suffix):
+            pieces[-1] = pieces[-1][: -len(pdoc.render.html_module_suffix)]
+        return &#34;.&#34;.join(pieces)
+
+    @property
+    def clean_path(self):
+        new, _ = re.subn(&#34;//+&#34;, &#34;/&#34;, self.path)
+        if &#34;#&#34; in new:
+            new = new[0 : new.index(&#34;#&#34;)]
+        return new.strip(&#34;/&#34;)
+
+    def address_string(self):
+        return &#34;%s:%s&#34; % (self.client_address[0], self.client_address[1])
+
+
+class DocServer(http.server.HTTPServer):
+    def __init__(self, addr, args, modules):
+        self.args = args
+        self.modules = modules
+        super().__init__(addr, DocHandler)</code></pre>
+</details>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+</section>
+<section>
+<h2 class="section-title" id="header-classes">Classes</h2>
+<dl>
+<dt id="pdoc.web.DocHandler"><code class="flex name class">
+<span>class <span class="ident">DocHandler</span></span>
+<span>(</span><span>request, client_address, server)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>HTTP request handler base class.</p>
+<p>The following explanation of HTTP serves to guide you through the
+code as well as to expose any misunderstandings I may have about
+HTTP (so you don't need to read the code to figure out I'm wrong
+:-).</p>
+<p>HTTP (HyperText Transfer Protocol) is an extensible protocol on
+top of a reliable stream transport (e.g. TCP/IP).
+The protocol
+recognizes three parts to a request:</p>
+<ol>
+<li>One line identifying the request type and path</li>
+<li>An optional set of RFC-822-style headers</li>
+<li>An optional data part</li>
+</ol>
+<p>The headers and data are separated by a blank line.</p>
+<p>The first line of the request has the form</p>
+<p><command> <path> <version></p>
+<p>where <command> is a (case-sensitive) keyword such as GET or POST,
+<path> is a string containing path information for the request,
+and <version> should be the string "HTTP/1.0" or "HTTP/1.1".
+<path> is encoded using the URL encoding scheme (using %xx to signify
+the ASCII character with hex code xx).</p>
+<p>The specification specifies that lines are separated by CRLF but
+for compatibility with the widest range of clients recommends
+servers also handle LF.
+Similarly, whitespace in the request line
+is treated sensibly (allowing multiple spaces between components
+and allowing trailing whitespace).</p>
+<p>Similarly, for output, lines ought to be separated by CRLF pairs
+but most clients grok LF characters just fine.</p>
+<p>If the first line of the request has the form</p>
+<p><command> <path></p>
+<p>(i.e. <version> is left out) then this is assumed to be an HTTP
+0.9 request; this form has no optional headers and data part and
+the reply consists of just the data.</p>
+<p>The reply form of the HTTP 1.x protocol again has three parts:</p>
+<ol>
+<li>One line giving the response code</li>
+<li>An optional set of RFC-822-style headers</li>
+<li>The data</li>
+</ol>
+<p>Again, the headers and data are separated by a blank line.</p>
+<p>The response code line has the form</p>
+<p><version> <responsecode> <responsestring></p>
+<p>where <version> is the protocol version ("HTTP/1.0" or "HTTP/1.1"),
+<responsecode> is a 3-digit response code indicating success or
+failure of the request, and <responsestring> is an optional
+human-readable string explaining what the response code means.</p>
+<p>This server parses the request and the headers, and then calls a
+function specific to the request type (<command>).
+Specifically,
+a request SPAM will be handled by a method do_SPAM().
+If no
+such method exists the server sends an error response to the
+client.
+If it exists, it is called with no arguments:</p>
+<p>do_SPAM()</p>
+<p>Note that the request name is case sensitive (i.e. SPAM and spam
+are different requests).</p>
+<p>The various request details are stored in instance variables:</p>
+<ul>
+<li>
+<p>client_address is the client IP address in the form (host,
+port);</p>
+</li>
+<li>
+<p>command, path and version are the broken-down request line;</p>
+</li>
+<li>
+<p>headers is an instance of email.message.Message (or a derived
+class) containing the header information;</p>
+</li>
+<li>
+<p>rfile is a file object open for reading positioned at the
+start of the optional input data part;</p>
+</li>
+<li>
+<p>wfile is a file object open for writing.</p>
+</li>
+</ul>
+<p>IT IS IMPORTANT TO ADHERE TO THE PROTOCOL FOR WRITING!</p>
+<p>The first thing to be written must be the response line.
+Then
+follow 0 or more header lines, then a blank line, and then the
+actual data (if any).
+The meaning of the header lines depends on
+the command executed by the server; in most cases, when data is
+returned, there should be at least one header line of the form</p>
+<p>Content-type: <type>/<subtype></p>
+<p>where <type> and <subtype> should be registered MIME types,
+e.g. "text/html" or "text/plain".</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DocHandler(http.server.BaseHTTPRequestHandler):
+    def do_HEAD(self):
+        if self.path != &#34;/&#34;:
+            out = self.html()
+            if out is None:
+                self.send_response(404)
+                self.end_headers()
+                return
+
+        self.send_response(200)
+        self.send_header(&#34;Content-type&#34;, &#34;text/html&#34;)
+        self.end_headers()
+
+    def do_GET(self):
+        if self.path == &#34;/&#34;:
+            midx = []
+            for m in self.server.modules:
+                midx.append((m.name, m.docstring))
+            midx = sorted(midx, key=lambda x: x[0].lower())
+            out = pdoc.render.html_index(midx, self.server.args.link_prefix)
+        elif self.path.endswith(&#34;.ext&#34;):
+            # External links are a bit weird. You should view them as a giant
+            # hack. Basically, the idea is to &#34;guess&#34; where something lives
+            # when documenting another module and hope that guess can actually
+            # track something down in a more global context.
+            #
+            # The idea here is to start specific by looking for HTML that
+            # exists that matches the full external path given. Then trim off
+            # one component at the end and try again.
+            #
+            # If no HTML is found, then we ask `pdoc` to do its thang on the
+            # parent module in the external path. If all goes well, that
+            # module will then be able to find the external identifier.
+
+            import_path = self.path[:-4].lstrip(&#34;/&#34;)
+            resolved = self.resolve_ext(import_path)
+            if resolved is None:  # Try to generate the HTML...
+                logging.info(&#34;Generating HTML for %s on the fly...&#34; % import_path)
+                self.html(import_path.split(&#34;.&#34;)[0])
+
+                # Try looking once more.
+                resolved = self.resolve_ext(import_path)
+            if resolved is None:  # All hope is lost.
+                self.send_response(404)
+                self.send_header(&#34;Content-type&#34;, &#34;text/html&#34;)
+                self.end_headers()
+                self.echo(
+                    &#34;External identifier &lt;code&gt;%s&lt;/code&gt; not found.&#34; % import_path
+                )
+                return
+            self.send_response(302)
+            self.send_header(&#34;Location&#34;, resolved)
+            self.end_headers()
+            return
+        else:
+            out = self.html()
+            if out is None:
+                self.send_response(404)
+                self.send_header(&#34;Content-type&#34;, &#34;text/html&#34;)
+                self.end_headers()
+
+                err = &#34;Module &lt;code&gt;%s&lt;/code&gt; not found.&#34; % self.import_path
+                self.echo(err)
+                return
+
+        self.send_response(200)
+        self.send_header(&#34;Content-type&#34;, &#34;text/html&#34;)
+        self.end_headers()
+        self.echo(out)
+
+    def echo(self, s):
+        self.wfile.write(s.encode(&#34;utf-8&#34;))
+
+    def html(self):
+        &#34;&#34;&#34;
+        Retrieves and sends the HTML belonging to the path given in
+        URL. This method is smart and will look for HTML files already
+        generated and account for whether they are stale compared to
+        the source code.
+        &#34;&#34;&#34;
+        # Deny favico shortcut early.
+        if self.path == &#34;/favicon.ico&#34;:
+            return None
+        return pdoc.render.html_module(pdoc.extract.extract_module(self.import_path))
+
+    def resolve_ext(self, import_path):
+        def exists(p):
+            p = os.path.join(self.server.args.html_dir, p)
+            pkg = os.path.join(p, pdoc.render.html_package_name)
+            mod = p + pdoc.render.html_module_suffix
+
+            if os.path.isfile(pkg):
+                return pkg[len(self.server.args.html_dir) :]
+            elif os.path.isfile(mod):
+                return mod[len(self.server.args.html_dir) :]
+            return None
+
+        parts = import_path.split(&#34;.&#34;)
+        for i in range(len(parts), 0, -1):
+            p = os.path.join(*parts[0:i])
+            realp = exists(p)
+            if realp is not None:
+                return &#34;/%s#%s&#34; % (realp.lstrip(&#34;/&#34;), import_path)
+        return None
+
+    @property
+    def file_path(self):
+        fp = os.path.join(self.server.args.html_dir, *self.import_path.split(&#34;.&#34;))
+        pkgp = os.path.join(fp, pdoc.render.html_package_name)
+        if os.path.isdir(fp) and os.path.isfile(pkgp):
+            fp = pkgp
+        else:
+            fp += pdoc.render.html_module_suffix
+        return fp
+
+    @property
+    def import_path(self):
+        pieces = self.clean_path.split(&#34;/&#34;)
+        if pieces[-1].startswith(pdoc.render.html_package_name):
+            pieces = pieces[:-1]
+        if pieces[-1].endswith(pdoc.render.html_module_suffix):
+            pieces[-1] = pieces[-1][: -len(pdoc.render.html_module_suffix)]
+        return &#34;.&#34;.join(pieces)
+
+    @property
+    def clean_path(self):
+        new, _ = re.subn(&#34;//+&#34;, &#34;/&#34;, self.path)
+        if &#34;#&#34; in new:
+            new = new[0 : new.index(&#34;#&#34;)]
+        return new.strip(&#34;/&#34;)
+
+    def address_string(self):
+        return &#34;%s:%s&#34; % (self.client_address[0], self.client_address[1])</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>http.server.BaseHTTPRequestHandler</li>
+<li>socketserver.StreamRequestHandler</li>
+<li>socketserver.BaseRequestHandler</li>
+</ul>
+<h3>Instance variables</h3>
+<dl>
+<dt id="pdoc.web.DocHandler.clean_path"><code class="name">var <span class="ident">clean_path</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def clean_path(self):
+    new, _ = re.subn(&#34;//+&#34;, &#34;/&#34;, self.path)
+    if &#34;#&#34; in new:
+        new = new[0 : new.index(&#34;#&#34;)]
+    return new.strip(&#34;/&#34;)</code></pre>
+</details>
+</dd>
+<dt id="pdoc.web.DocHandler.file_path"><code class="name">var <span class="ident">file_path</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def file_path(self):
+    fp = os.path.join(self.server.args.html_dir, *self.import_path.split(&#34;.&#34;))
+    pkgp = os.path.join(fp, pdoc.render.html_package_name)
+    if os.path.isdir(fp) and os.path.isfile(pkgp):
+        fp = pkgp
+    else:
+        fp += pdoc.render.html_module_suffix
+    return fp</code></pre>
+</details>
+</dd>
+<dt id="pdoc.web.DocHandler.import_path"><code class="name">var <span class="ident">import_path</span></code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">@property
+def import_path(self):
+    pieces = self.clean_path.split(&#34;/&#34;)
+    if pieces[-1].startswith(pdoc.render.html_package_name):
+        pieces = pieces[:-1]
+    if pieces[-1].endswith(pdoc.render.html_module_suffix):
+        pieces[-1] = pieces[-1][: -len(pdoc.render.html_module_suffix)]
+    return &#34;.&#34;.join(pieces)</code></pre>
+</details>
+</dd>
+</dl>
+<h3>Methods</h3>
+<dl>
+<dt id="pdoc.web.DocHandler.address_string"><code class="name flex">
+<span>def <span class="ident">address_string</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Return the client address.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def address_string(self):
+    return &#34;%s:%s&#34; % (self.client_address[0], self.client_address[1])</code></pre>
+</details>
+</dd>
+<dt id="pdoc.web.DocHandler.do_GET"><code class="name flex">
+<span>def <span class="ident">do_GET</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def do_GET(self):
+    if self.path == &#34;/&#34;:
+        midx = []
+        for m in self.server.modules:
+            midx.append((m.name, m.docstring))
+        midx = sorted(midx, key=lambda x: x[0].lower())
+        out = pdoc.render.html_index(midx, self.server.args.link_prefix)
+    elif self.path.endswith(&#34;.ext&#34;):
+        # External links are a bit weird. You should view them as a giant
+        # hack. Basically, the idea is to &#34;guess&#34; where something lives
+        # when documenting another module and hope that guess can actually
+        # track something down in a more global context.
+        #
+        # The idea here is to start specific by looking for HTML that
+        # exists that matches the full external path given. Then trim off
+        # one component at the end and try again.
+        #
+        # If no HTML is found, then we ask `pdoc` to do its thang on the
+        # parent module in the external path. If all goes well, that
+        # module will then be able to find the external identifier.
+
+        import_path = self.path[:-4].lstrip(&#34;/&#34;)
+        resolved = self.resolve_ext(import_path)
+        if resolved is None:  # Try to generate the HTML...
+            logging.info(&#34;Generating HTML for %s on the fly...&#34; % import_path)
+            self.html(import_path.split(&#34;.&#34;)[0])
+
+            # Try looking once more.
+            resolved = self.resolve_ext(import_path)
+        if resolved is None:  # All hope is lost.
+            self.send_response(404)
+            self.send_header(&#34;Content-type&#34;, &#34;text/html&#34;)
+            self.end_headers()
+            self.echo(
+                &#34;External identifier &lt;code&gt;%s&lt;/code&gt; not found.&#34; % import_path
+            )
+            return
+        self.send_response(302)
+        self.send_header(&#34;Location&#34;, resolved)
+        self.end_headers()
+        return
+    else:
+        out = self.html()
+        if out is None:
+            self.send_response(404)
+            self.send_header(&#34;Content-type&#34;, &#34;text/html&#34;)
+            self.end_headers()
+
+            err = &#34;Module &lt;code&gt;%s&lt;/code&gt; not found.&#34; % self.import_path
+            self.echo(err)
+            return
+
+    self.send_response(200)
+    self.send_header(&#34;Content-type&#34;, &#34;text/html&#34;)
+    self.end_headers()
+    self.echo(out)</code></pre>
+</details>
+</dd>
+<dt id="pdoc.web.DocHandler.do_HEAD"><code class="name flex">
+<span>def <span class="ident">do_HEAD</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def do_HEAD(self):
+    if self.path != &#34;/&#34;:
+        out = self.html()
+        if out is None:
+            self.send_response(404)
+            self.end_headers()
+            return
+
+    self.send_response(200)
+    self.send_header(&#34;Content-type&#34;, &#34;text/html&#34;)
+    self.end_headers()</code></pre>
+</details>
+</dd>
+<dt id="pdoc.web.DocHandler.echo"><code class="name flex">
+<span>def <span class="ident">echo</span></span>(<span>self, s)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def echo(self, s):
+    self.wfile.write(s.encode(&#34;utf-8&#34;))</code></pre>
+</details>
+</dd>
+<dt id="pdoc.web.DocHandler.html"><code class="name flex">
+<span>def <span class="ident">html</span></span>(<span>self)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Retrieves and sends the HTML belonging to the path given in
+URL. This method is smart and will look for HTML files already
+generated and account for whether they are stale compared to
+the source code.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def html(self):
+    &#34;&#34;&#34;
+    Retrieves and sends the HTML belonging to the path given in
+    URL. This method is smart and will look for HTML files already
+    generated and account for whether they are stale compared to
+    the source code.
+    &#34;&#34;&#34;
+    # Deny favico shortcut early.
+    if self.path == &#34;/favicon.ico&#34;:
+        return None
+    return pdoc.render.html_module(pdoc.extract.extract_module(self.import_path))</code></pre>
+</details>
+</dd>
+<dt id="pdoc.web.DocHandler.resolve_ext"><code class="name flex">
+<span>def <span class="ident">resolve_ext</span></span>(<span>self, import_path)</span>
+</code></dt>
+<dd>
+<div class="desc"></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">def resolve_ext(self, import_path):
+    def exists(p):
+        p = os.path.join(self.server.args.html_dir, p)
+        pkg = os.path.join(p, pdoc.render.html_package_name)
+        mod = p + pdoc.render.html_module_suffix
+
+        if os.path.isfile(pkg):
+            return pkg[len(self.server.args.html_dir) :]
+        elif os.path.isfile(mod):
+            return mod[len(self.server.args.html_dir) :]
+        return None
+
+    parts = import_path.split(&#34;.&#34;)
+    for i in range(len(parts), 0, -1):
+        p = os.path.join(*parts[0:i])
+        realp = exists(p)
+        if realp is not None:
+            return &#34;/%s#%s&#34; % (realp.lstrip(&#34;/&#34;), import_path)
+    return None</code></pre>
+</details>
+</dd>
+</dl>
+</dd>
+<dt id="pdoc.web.DocServer"><code class="flex name class">
+<span>class <span class="ident">DocServer</span></span>
+<span>(</span><span>addr, args, modules)</span>
+</code></dt>
+<dd>
+<div class="desc"><p>Base class for various socket-based server classes.</p>
+<p>Defaults to synchronous IP stream (i.e., TCP).</p>
+<p>Methods for the caller:</p>
+<ul>
+<li><strong>init</strong>(server_address, RequestHandlerClass, bind_and_activate=True)</li>
+<li>serve_forever(poll_interval=0.5)</li>
+<li>shutdown()</li>
+<li>handle_request()
+# if you don't use serve_forever()</li>
+<li>fileno() -&gt; int
+# for selector</li>
+</ul>
+<p>Methods that may be overridden:</p>
+<ul>
+<li>server_bind()</li>
+<li>server_activate()</li>
+<li>get_request() -&gt; request, client_address</li>
+<li>handle_timeout()</li>
+<li>verify_request(request, client_address)</li>
+<li>process_request(request, client_address)</li>
+<li>shutdown_request(request)</li>
+<li>close_request(request)</li>
+<li>handle_error()</li>
+</ul>
+<p>Methods for derived classes:</p>
+<ul>
+<li>finish_request(request, client_address)</li>
+</ul>
+<p>Class variables that may be overridden by derived classes or
+instances:</p>
+<ul>
+<li>timeout</li>
+<li>address_family</li>
+<li>socket_type</li>
+<li>request_queue_size (only for stream sockets)</li>
+<li>allow_reuse_address</li>
+</ul>
+<p>Instance variables:</p>
+<ul>
+<li>server_address</li>
+<li>RequestHandlerClass</li>
+<li>socket</li>
+</ul>
+<p>Constructor.
+May be extended, do not override.</p></div>
+<details class="source">
+<summary>
+<span>Expand source code</span>
+</summary>
+<pre><code class="python">class DocServer(http.server.HTTPServer):
+    def __init__(self, addr, args, modules):
+        self.args = args
+        self.modules = modules
+        super().__init__(addr, DocHandler)</code></pre>
+</details>
+<h3>Ancestors</h3>
+<ul class="hlist">
+<li>http.server.HTTPServer</li>
+<li>socketserver.TCPServer</li>
+<li>socketserver.BaseServer</li>
+</ul>
+</dd>
+</dl>
+</section>
+</article>
+<nav id="sidebar">
+<h1>Index</h1>
+<div class="toc">
+<ul></ul>
+</div>
+<ul id="index">
+<li><h3>Super-module</h3>
+<ul>
+<li><code><a title="pdoc" href="index.html">pdoc</a></code></li>
+</ul>
+</li>
+<li><h3><a href="#header-classes">Classes</a></h3>
+<ul>
+<li>
+<h4><code><a title="pdoc.web.DocHandler" href="#pdoc.web.DocHandler">DocHandler</a></code></h4>
+<ul class="two-column">
+<li><code><a title="pdoc.web.DocHandler.address_string" href="#pdoc.web.DocHandler.address_string">address_string</a></code></li>
+<li><code><a title="pdoc.web.DocHandler.clean_path" href="#pdoc.web.DocHandler.clean_path">clean_path</a></code></li>
+<li><code><a title="pdoc.web.DocHandler.do_GET" href="#pdoc.web.DocHandler.do_GET">do_GET</a></code></li>
+<li><code><a title="pdoc.web.DocHandler.do_HEAD" href="#pdoc.web.DocHandler.do_HEAD">do_HEAD</a></code></li>
+<li><code><a title="pdoc.web.DocHandler.echo" href="#pdoc.web.DocHandler.echo">echo</a></code></li>
+<li><code><a title="pdoc.web.DocHandler.file_path" href="#pdoc.web.DocHandler.file_path">file_path</a></code></li>
+<li><code><a title="pdoc.web.DocHandler.html" href="#pdoc.web.DocHandler.html">html</a></code></li>
+<li><code><a title="pdoc.web.DocHandler.import_path" href="#pdoc.web.DocHandler.import_path">import_path</a></code></li>
+<li><code><a title="pdoc.web.DocHandler.resolve_ext" href="#pdoc.web.DocHandler.resolve_ext">resolve_ext</a></code></li>
+</ul>
+</li>
+<li>
+<h4><code><a title="pdoc.web.DocServer" href="#pdoc.web.DocServer">DocServer</a></code></h4>
+</li>
+</ul>
+</li>
+</ul>
+</nav>
+</main>
+<footer id="footer">
+<p>Generated by <a href="https://pdoc3.github.io/pdoc" title="pdoc: Python API documentation generator"><cite>pdoc</cite> 0.10.0</a>.</p>
+</footer>
+</body>
+</html>
