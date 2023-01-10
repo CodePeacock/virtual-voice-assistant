@@ -1,5 +1,10 @@
 [![Voice Assistant](https://github.com/FireStorm69/virtual-voice-assistant/actions/workflows/python-app.yml/badge.svg?branch=main)](https://github.com/FireStorm69/virtual-voice-assistant/actions/workflows/python-app.yml)
 
+<p align="center">
+  <img src="https://user-images.githubusercontent.com/71129528/211588298-da197058-b874-4d1e-bd5d-be83f6e710b0.svg">
+  <img src="https://forthebadge.com/images/badges/made-with-python.svg">
+</p>
+
 # Integrating Voice Assistant written in Python using python packages with Trello Boards
 
 This project allows developers to quickly and easily integrate a voice assistant written in Python into their existing Trello boards. It provides an easy-to-use solution for giving users a more natural and intuitive way to interact with their Trello boards.
