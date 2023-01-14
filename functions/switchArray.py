@@ -9,7 +9,7 @@ from functions import (
 
 class trello_Array:
     def __init__(self, client):
-        self.client = clientToken.client
+        self.client = clientToken.CLIENT
         self.switch = {
             "open board": self.open_board,
             "add board": self.add_board,

@@ -37,7 +37,7 @@ def using_switchArray():
     query = voiceAssistant.takeCommand().lower()
 
     if query in switchArray:
-        switchArray[query](clientToken.client)
+        switchArray[query](clientToken.CLIENT)
     else:
         voiceAssistant.speak("Sorry, I didn't understand that")
 

@@ -96,3 +96,31 @@ def delete_card(client):
                     for card in cards:
                         if card_name in card.name.lower():
                             card.delete()
+
+def add_label(client):
+    """
+    This function will add a label to a card
+
+    :param client: TrelloClient object
+    """
+    speak("What board do you want to add a label to?")
+    board_name = takeCommand().lower()
+    boards = client.list_boards()
+    for board in boards:
+        if board_name in board.name.lower():
+            speak("What list do you want to add a label to?")
+            list_name = takeCommand().lower()
+            lists = board.list_lists()
+            for list in lists:
+                if list_name in list.name.lower():
+                    speak("What card do you want to add a label to?")
+                    card_name = takeCommand().lower()
+                    cards = list.list_cards()
+                    for card in cards:
+                        if card_name in card.name.lower():
+                            speak("What label do you want to add?")
+                            label_name = takeCommand().lower()
+                            labels = client.list_labels()
+                            for label in labels:
+                                if label_name in label.name.lower():
+                                    card.add_label(label)
