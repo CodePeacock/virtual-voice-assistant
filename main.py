@@ -1,12 +1,13 @@
 import os
+
 from functions import (
-    clientToken,
+    boardFunctions,
     cardChecklistFunctions,
     cardFunctions,
-    boardFunctions,
+    clientToken,
+    greetUser,
     listFunctions,
     voiceAssistant,
-    greetUser,
 )
 
 vaname = greetUser.VANAME
@@ -19,7 +20,6 @@ def using_switchArray():
     """
     # A dictionary.
     switchArray = {
-        "open trello": boardFunctions.open_board,
         "add board": boardFunctions.add_board,
         "update board name": boardFunctions.update_board_name,
         "delete board": boardFunctions.close_and_archive_board,
@@ -30,7 +30,8 @@ def using_switchArray():
         "open card": cardFunctions.open_card,
         "update card name": cardFunctions.update_card_name,
         "delete card": cardFunctions.delete_card,
-        "add checklist": cardChecklistFunctions.add_checklist,
+        "add check list": cardChecklistFunctions.add_checklist_item,
+        "open trello": boardFunctions.open_trello,
         "exit": exit,
     }
 
@@ -49,8 +50,8 @@ if __name__ == "__main__":
         return os.system("cls")
 
     clear()
-    greetUser.wishMe()
-    greetUser.username()
+    # greetUser.wishMe()
+    # greetUser.username()
 
     while True:
         using_switchArray()

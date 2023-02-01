@@ -38,18 +38,15 @@ def takeCommand():
     """
 
     with sr.Microphone() as source:
-        r.adjust_for_ambient_noise(source, duration=1)
         print("Listening...")
-        r.pause_threshold = 1
+        r.pause_threshold = 0.7
         # r.energy_threshold = 10
         r.energy_threshold = 300
-        r.dynamic_energy_threshold = True
-        r.dynamic_energy_adjustment_damping = 0.15
         print("Now you can speak...")
         audio = r.listen(source)
     try:
         print("Recognizing...")
-        query = r.recognize_google(audio, language="en-in")
+        query = r.recognize_google(audio, language="en-us")
         print(f"User said: {query}\n")
 
     except Exception as e:

@@ -1,8 +1,8 @@
 from functions import (
-    clientToken,
+    boardFunctions,
     cardChecklistFunctions,
     cardFunctions,
-    boardFunctions,
+    clientToken,
     listFunctions,
 )
 

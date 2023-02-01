@@ -2,27 +2,24 @@ from functions.voiceAssistant import speak
 from functions.voiceAssistant import takeCommand
 
 
-def add_checklist(client):
-    """
-    It adds a checklist to a card.
+def add_checklist_item(client):
+    speak("What is the name of the board you want to add a checklist item to?")
+    board_name = takeCommand()
+    speak("What is the name of the list you want to add a checklist item to?")
+    list_name = takeCommand()
+    speak("What is the name of the card you want to add a checklist item to?")
+    card_name = takeCommand()
+    speak("What is the name of the checklist you want to add a checklist item to?")
+    checklist_name = takeCommand()
+    speak("What is the name of the checklist item you want to add?")
+    checklist_item_name = takeCommand()
+    speak("What is the status of the checklist item you want to add?")
+    checklist_item_status = takeCommand()
 
-    :param client: the Trello client
-    """
-    speak("What board do you want to add a checklist to?")
-    board_name = takeCommand().lower()
-    boards = client.list_boards()
-    for board in boards:
-        if board_name in board.name.lower():
-            speak("What list do you want to add a checklist to?")
-            list_name = takeCommand().lower()
-            lists = board.list_lists()
-            for list in lists:
-                if list_name in list.name.lower():
-                    speak("What card do you want to add a checklist to?")
-                    card_name = takeCommand().lower()
-                    cards = list.list_cards()
-                    for card in cards:
-                        if card_name in card.name.lower():
-                            speak("What do you want to name your checklist?")
-                            checklist_name = takeCommand()
-                            card.add_checklist(checklist_name)
+    board = client.get_board(board_name)
+    list_t = board.get_list(list_name)
+    card = list_t.get_card(card_name)
+    checklist = card.get_checklist(checklist_name)
+    checklist.add_checklist_item(checklist_item_name, checklist_item_status)
+
+    speak("Checklist item added")
