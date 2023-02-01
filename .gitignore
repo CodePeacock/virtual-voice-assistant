@@ -29,7 +29,7 @@ share/python-wheels/
 MANIFEST
 .vscode
 trial
-nlptrials
+
 
 
 # PyInstaller
