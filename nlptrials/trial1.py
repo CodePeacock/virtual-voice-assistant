@@ -1,4 +1,5 @@
 from __future__ import with_statement  # with statement for reading file
+
 import re  # Regular expression
 
 words = []  # corpus file words
@@ -26,7 +27,7 @@ else:
     print(a)
 for each in a:
     testword.append(each)  # test word
-    test_lenth = len(testword)  # lenth of the test data
+    test_length = len(testword)  # lenth of the test data
 # Reading the corpus
 with open("nlptrials\words.txt", "r") as f:
     lines = f.readlines()
@@ -50,12 +51,12 @@ Score = 0  # initial value for score
 N = 37  # total no of corpus
 M = 0
 C = 0
-while test_tot_itr < test_lenth:
-    ans_words = Seg(a, test_lenth)
+while test_tot_itr < test_length:
+    ans_words = Seg(a, test_length)
     if ans_words != 0:
-        test_itr = len(ans_words)
+        test_itr = ans_words.__le__()
         answer.append(ans_words)
-        a = a[test_itr:test_lenth]
+        a = a[test_itr:test_length]
         test_tot_itr += test_itr
 Aft_Seg = " ".join(list(answer))
 # print segmented words in the list
