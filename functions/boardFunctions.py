@@ -1,6 +1,7 @@
-from functions.voiceAssistant import speak
-from functions.voiceAssistant import takeCommand
 import webbrowser
+from logging import Logger as logger
+
+from functions.voiceAssistant import speak, takeCommand
 
 # board_list = [board.name.lower() for board in client.list_boards()]
 # print(board_list)
