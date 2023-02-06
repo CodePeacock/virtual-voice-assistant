@@ -19,3 +19,6 @@ for index in range(len(sents)):
     tree.append(chunk.ne_chunk(tagged_words[index]))
     print("\nchunking\n========\n")
     print(tree)
+
+# Output:
+# sentence tokenization
