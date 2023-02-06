@@ -1,8 +1,7 @@
-import nltk
 from nltk import chunk, tag, tokenize
 
-para = "Hello! My name is Beena Kapadia. Today you'll be learning NLTK."
-sents = tokenize.sent_tokenize(para)
+PARA = "I want you to create a card named Demo 1 in the list demolist and board of the list is it project"
+sents = tokenize.sent_tokenize(PARA)
 print("\nsentence tokenization\n===================\n", sents)
 # word tokenization
 print("\nword tokenization\n===================\n")
