@@ -1,5 +1,9 @@
-from dotenv import load_dotenv
+"""
+This file is used to create a client object that will be used to interact with the Trello API.
+"""
 import os
+
+from dotenv import load_dotenv
 from trello import TrelloClient
 
 load_dotenv()

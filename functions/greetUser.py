@@ -1,3 +1,4 @@
+"""This file contains the functions that greet the user and ask for a name."""
 import datetime
 import shutil
 
@@ -7,10 +8,9 @@ VANAME = "Alice"
 source = sr.Microphone()
 
 
-def wishMe():
+def wishme():
     """
-    It takes the current hour and if it's between 0 and 1p, it says "Good Morning", if it's between 12
-    and 18, it says "Good Afternoon", and if it's between 18 and 24, it says "Good Evening".
+    This function greets the user with a good morning, afternoon, or evening.
     """
     hour = int(datetime.datetime.now().hour)
     if hour >= 0 and hour < 12:

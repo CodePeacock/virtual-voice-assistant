@@ -29,7 +29,7 @@ for each in a:
     testword.append(each)  # test word
     test_length = len(testword)  # lenth of the test data
 # Reading the corpus
-with open("nlptrials\words.txt", "r") as f:
+with open("nlptrials\\words.txt", "r", encoding="utf8") as f:
     lines = f.readlines()
     words = [(e.strip()) for e in lines]
 
@@ -41,7 +41,7 @@ def Seg(a, length):
             print(a[:k], "-appears in the corpus")
             ans.append(a[:k])
             break
-        if ans != []:
+        if not ans:
             return max(ans, key=len)
 
 
@@ -54,9 +54,9 @@ C = 0
 while test_tot_itr < test_length:
     ans_words = Seg(a, test_length)
     if ans_words != 0:
-        test_itr = ans_words.__le__()
+        test_tot_itr <= ans_words
         answer.append(ans_words)
-        a = a[test_itr:test_length]
+        a = a[test_tot_itr:test_length]
         test_tot_itr += test_itr
 Aft_Seg = " ".join(list(answer))
 # print segmented words in the list

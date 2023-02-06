@@ -1,3 +1,4 @@
+""" This file contains the functions that are used to convert text to speech and vice versa"""
 import pyttsx3
 import speech_recognition as sr
 
@@ -49,8 +50,8 @@ def takeCommand():
         query = r.recognize_google(audio, language="en-us")
         print(f"User said: {query}\n")
 
-    except Exception as e:
-        print(e)
+    except Exception as exception:
+        print(exception)
         print("Unable to Recognize your voice.")
         return "None"
     return query

@@ -1,5 +1,5 @@
-from functions.voiceAssistant import speak
-from functions.voiceAssistant import takeCommand
+"""This file contains functions that deal with lists on Trello boards."""
+from functions.voiceAssistant import speak, takeCommand
 
 
 def add_list(client):

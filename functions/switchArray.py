@@ -1,3 +1,4 @@
+"""This file contains the switch array class which is used to call the functions"""
 from functions import (
     boardFunctions,
     cardChecklistFunctions,
@@ -6,7 +7,7 @@ from functions import (
     listFunctions,
 )
 
-
+# It's a class that contains a dictionary of functions that are called based on the user's input.
 class trello_Array:
     def __init__(self, client):
         self.client = clientToken.CLIENT
@@ -14,7 +15,6 @@ class trello_Array:
             "open board": self.open_board,
             "add board": self.add_board,
             "update board name": self.update_board_name,
-            "delete board": self.close_and_archive_board,
             "add list": self.add_list,
             "update list name": self.update_list_name,
             "archive list": self.archive_list,
