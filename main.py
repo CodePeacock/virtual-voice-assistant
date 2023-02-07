@@ -1,3 +1,4 @@
+""" This is the main file of the project. It contains the main function and the switcharray. """
 import os
 
 from functions import (
@@ -5,21 +6,19 @@ from functions import (
     cardChecklistFunctions,
     cardFunctions,
     clientToken,
-    greetUser,
     listFunctions,
     voiceAssistant,
 )
 
-vaname = greetUser.VANAME
+# vaname = greetUser.VANAME
 
 
-def using_switchArray():
+def using_switcharray():
     """
-    It takes a command from the user, and if the command is in the switchArray, it executes the function
-    associated with that command
+    This function is the main function of the project. It contains the switcharray.
     """
     # A dictionary.
-    switchArray = {
+    switcharray = {
         "add board": boardFunctions.add_board,
         "update board name": boardFunctions.update_board_name,
         "delete board": boardFunctions.close_and_archive_board,
@@ -37,8 +36,8 @@ def using_switchArray():
 
     query = voiceAssistant.takeCommand().lower()
 
-    if query in switchArray:
-        switchArray[query](clientToken.CLIENT)
+    if query in switcharray:
+        switcharray[query](clientToken.CLIENT)
     else:
         voiceAssistant.speak("Sorry, I didn't understand that")
 
@@ -47,6 +46,7 @@ def using_switchArray():
 if __name__ == "__main__":
 
     def clear():
+        """ This function clears the terminal. """
         return os.system("cls")
 
     clear()
@@ -54,4 +54,4 @@ if __name__ == "__main__":
     # greetUser.username()
 
     while True:
-        using_switchArray()
+        using_switcharray()
