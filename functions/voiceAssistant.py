@@ -31,7 +31,7 @@ def speak(audio):
 #     return result
 
 
-def takeCommand():
+def takecommand():
     # sourcery skip: extract-method, inline-immediately-returned-variable
     """
     It takes a command from the user, and returns it as a string
@@ -50,7 +50,7 @@ def takeCommand():
         query = r.recognize_google(audio, language="en-us")
         print(f"User said: {query}\n")
 
-    except Exception as exception:
+    except sr.RequestError as exception:
         print(exception)
         print("Unable to Recognize your voice.")
         return "None"

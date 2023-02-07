@@ -1,16 +1,17 @@
 """This file contains the switch array class which is used to call the functions"""
 from functions import (
-    boardFunctions,
+    boardfunctions,
     cardChecklistFunctions,
-    cardFunctions,
-    clientToken,
-    listFunctions,
+    cardfunctions,
+    clienttoken,
+    listfunctions,
 )
 
-# It's a class that contains a dictionary of functions that are called based on the user's input.
+
 class trello_Array:
+    """This class contains the switch array which is used to call the functions"""
     def __init__(self, client):
-        self.client = clientToken.CLIENT
+        self.client = clienttoken.CLIENT
         self.switch = {
             "open board": self.open_board,
             "add board": self.add_board,
@@ -26,37 +27,37 @@ class trello_Array:
         }
 
     def open_board(self):
-        boardFunctions.open_board(self.client)
+        boardfunctions.open_board(self.client)
 
     def add_board(self):
-        boardFunctions.add_board(self.client)
+        boardfunctions.add_board(self.client)
 
     def update_board_name(self):
-        boardFunctions.update_board_name(self.client)
+        boardfunctions.update_board_name(self.client)
 
     def delete_board(self):
-        boardFunctions.delete_board(self.client)
+        boardfunctions.delete_board(self.client)
 
     def add_list(self):
-        listFunctions.add_list(self.client)
+        listfunctions.add_list(self.client)
 
     def update_list_name(self):
-        listFunctions.update_list_name(self.client)
+        listfunctions.update_list_name(self.client)
 
     def archive_list(self):
-        listFunctions.archive_list(self.client)
+        listfunctions.archive_list(self.client)
 
     def add_card(self):
-        cardFunctions.add_card(self.client)
+        cardfunctions.add_card(self.client)
 
     def open_card(self):
-        cardFunctions.open_card(self.client)
+        cardfunctions.open_card(self.client)
 
     def update_card_name(self):
-        cardFunctions.update_card_name(self.client)
+        cardfunctions.update_card_name(self.client)
 
     def delete_card(self):
-        cardFunctions.delete_card(self.client)
+        cardfunctions.delete_card(self.client)
 
     def add_checklist(self):
         cardChecklistFunctions.add_checklist(self.client)

@@ -1,6 +1,11 @@
+"""This program is to demonstrate the use of NLTK for POS tagging and chunking."""
 from nltk import chunk, tag, tokenize
 
-PARA = "I want you to create a card named Demo 1 in the list demolist and board of the list is it project"
+PARA = """
+    I want you to create a card named
+    Demo 1 in the list demolist and
+    board of the list is it project
+    """
 sents = tokenize.sent_tokenize(PARA)
 print("\nsentence tokenization\n===================\n", sents)
 # word tokenization

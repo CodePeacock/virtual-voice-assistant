@@ -2,7 +2,7 @@
 import datetime
 import shutil
 
-from functions.voiceAssistant import speak, sr, takeCommand
+from functions.voiceassistant import speak, sr, takecommand
 
 VANAME = "Alice"
 source = sr.Microphone()
@@ -30,7 +30,7 @@ def username():
     It asks the user for a name, then greets the user with that name.
     """
     speak("What should i call you Buddy")
-    uname = takeCommand()
+    uname = takecommand()
     speak("Welcome Buddy")
     speak(uname)
     columns = shutil.get_terminal_size().columns

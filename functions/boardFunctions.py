@@ -1,7 +1,6 @@
+"""This module contains functions for interacting with Trello boards"""
 import webbrowser
-from logging import Logger as logger
-
-from functions.voiceAssistant import speak, takeCommand
+from functions.voiceassistant import speak, takecommand
 
 # board_list = [board.name.lower() for board in client.list_boards()]
 # print(board_list)
@@ -34,7 +33,7 @@ def add_board(client):
     :param client: TrelloClient object
     """
     speak("What do you want to name your board?")
-    board_name = takeCommand()
+    board_name = takecommand()
     client.add_board(board_name)
 
 
@@ -45,7 +44,7 @@ def open_board(client):
     :param client: TrelloClient object
     """
     speak("What board do you want to open?")
-    board_name = takeCommand().lower()
+    board_name = takecommand().lower()
     boards = client.list_boards()
     for board in boards:
         if board_name in board.name.lower():
@@ -59,15 +58,14 @@ def update_board_name(client):
     :param client: TrelloClient object
     """
     speak("What board do you want to update?")
-    board_name = takeCommand().lower()
+    board_name = takecommand().lower()
     boards = client.list_boards()
     for board in boards:
         if board_name in board.name.lower():
             speak("What do you want to update the board name to?")
-            new_board_name = takeCommand()
+            new_board_name = takecommand()
             board.set_name(new_board_name)
             speak("Board name updated")
-            logger.info(f"Board name updated to {new_board_name}")
 
 
 def close_and_archive_board(client):
@@ -77,7 +75,7 @@ def close_and_archive_board(client):
     :param client: TrelloClient object
     """
     speak("What board do you want to close and archive?")
-    board_name = takeCommand().lower()
+    board_name = takecommand().lower()
     boards = client.list_boards()
     for board in boards:
         if board_name in board.name.lower():
