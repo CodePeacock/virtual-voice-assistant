@@ -18,6 +18,7 @@ def using_switcharray():
     This function is the main function of the project. It contains the switcharray.
     """
     # A dictionary.
+    # Checking if git remote is broken
     switcharray = {
         "add board": boardfunctions.add_board,
         "update board name": boardfunctions.update_board_name,
