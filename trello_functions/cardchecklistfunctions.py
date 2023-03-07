@@ -1,6 +1,6 @@
 """This file contains functions for adding and removing checklist items from cards"""
-from functions.voiceassistant import speak
-from functions.voiceassistant import takecommand
+from trello_functions.voiceassistant import speak
+from trello_functions.voiceassistant import takecommand
 
 
 def add_checklist_item(client):

@@ -1,6 +1,6 @@
 """This module contains functions for interacting with Trello boards"""
 import webbrowser
-from functions.voiceassistant import speak, takecommand
+from trello_functions.voiceassistant import speak, takecommand
 
 # board_list = [board.name.lower() for board in client.list_boards()]
 # print(board_list)

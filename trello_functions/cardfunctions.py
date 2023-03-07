@@ -3,7 +3,7 @@ This file contains functions that will add, open, and update cards in a _list
 """
 import webbrowser
 
-from functions.voiceassistant import speak, takecommand
+from trello_functions.voiceassistant import speak, takecommand
 
 
 def add_card(client):

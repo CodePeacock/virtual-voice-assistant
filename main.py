@@ -1,7 +1,7 @@
 """ This is the main file of the project. It contains the main function and the switcharray. """
 import os
 
-from functions import (
+from trello_functions import (
     boardfunctions,
     cardChecklistFunctions,
     cardfunctions,

@@ -1,5 +1,5 @@
 """This file contains the switch array class which is used to call the functions"""
-from functions import (
+from trello_functions import (
     boardfunctions,
     cardChecklistFunctions,
     cardfunctions,
@@ -10,6 +10,7 @@ from functions import (
 
 class trello_Array:
     """This class contains the switch array which is used to call the functions"""
+
     def __init__(self, client):
         self.client = clienttoken.CLIENT
         self.switch = {

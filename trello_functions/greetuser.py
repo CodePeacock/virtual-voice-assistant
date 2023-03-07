@@ -2,7 +2,7 @@
 import datetime
 import shutil
 
-from functions.voiceassistant import speak, sr, takecommand
+from trello_functions.voiceassistant import speak, sr, takecommand
 
 VANAME = "Alice"
 source = sr.Microphone()
