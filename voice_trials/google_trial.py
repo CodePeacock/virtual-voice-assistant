@@ -1,3 +1,5 @@
+"""This file is a trial for using the TTS module from the TTS package."""
+
 from TTS.api import TTS
 
 # Running a multi-speaker and multi-lingual model
@@ -21,6 +23,7 @@ tts.tts_to_file(
     language=tts.languages[0],
     file_path="output.wav",
 )
+OUTPUT_PATH = "D:\\virtual-voice-assistant\\voice_trials\\output.wav"
 
 # Running a single speaker model
 
