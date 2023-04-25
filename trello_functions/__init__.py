@@ -7,3 +7,4 @@ from .switcharray import *
 from .trello_functions import *
 from .voiceassistant import *
 from .greetuser import *
+from .cardchecklistfunctions import *

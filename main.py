@@ -3,7 +3,6 @@ import os
 
 from trello_functions import (
     boardfunctions,
-    cardChecklistFunctions,
     cardfunctions,
     clienttoken,
     listfunctions,
@@ -20,27 +19,30 @@ def using_switcharray():
     # A dictionary.
     # Checking if git remote is broken
     switcharray = {
-        "add board": boardfunctions.add_board,
-        "update board name": boardfunctions.update_board_name,
-        "delete board": boardfunctions.close_and_archive_board,
-        "add list": listfunctions.add_list,
-        "update list name": listfunctions.update_list_name,
-        "archive list": listfunctions.archive_list,
-        "add card": cardfunctions.add_card,
-        "open card": cardfunctions.open_card,
-        "update card name": cardfunctions.update_card_name,
-        "delete card": cardfunctions.delete_card,
-        "add check list": cardChecklistFunctions.add_checklist_item,
-        "open trello": boardfunctions.open_trello,
-        "exit": exit,
+        "add board.": boardfunctions.add_board,
+        "update board name.": boardfunctions.update_board_name,
+        "delete board.": boardfunctions.close_and_archive_board,
+        "add list.": listfunctions.add_list,
+        "update list name.": listfunctions.update_list_name,
+        "archive list.": listfunctions.archive_list,
+        "add card.": cardfunctions.add_card,
+        "open card.": cardfunctions.open_card,
+        "update card name.": cardfunctions.update_card_name,
+        "delete card.": cardfunctions.delete_card,
+        # "add check list": cardChecklistFunctions.add_checklist_item,
+        "open trello.": boardfunctions.open_trello,
+        "exit.": exit,
     }
+    try:
+        query: str = voiceassistant.takecommand()
 
-    query = voiceassistant.takecommand().lower()
-
-    if query in switcharray:
-        switcharray[query](clienttoken.CLIENT)
-    else:
-        voiceassistant.speak("Sorry, I didn't understand that")
+        if query.lower() in switcharray:
+            switcharray[query.lower()](clienttoken.CLIENT)
+        else:
+            voiceassistant.speak("Sorry, I didn't understand that")
+    except Exception as error:
+        print(error)
+        raise
 
 
 # A way to run the main function only when you want to run the script directly.

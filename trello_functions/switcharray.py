@@ -1,7 +1,6 @@
 """This file contains the switch array class which is used to call the functions"""
 from trello_functions import (
     boardfunctions,
-    cardChecklistFunctions,
     cardfunctions,
     clienttoken,
     listfunctions,
@@ -60,8 +59,8 @@ class trello_Array:
     def delete_card(self):
         cardfunctions.delete_card(self.client)
 
-    def add_checklist(self):
-        cardChecklistFunctions.add_checklist(self.client)
+    # def add_checklist(self):
+    #     cardChecklistFunctions.add_checklist(self.client)
 
     def exit(self):
         exit()
