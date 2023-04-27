@@ -19,7 +19,7 @@ class trello_Array:
             "add list": self.add_list,
             "update list name": self.update_list_name,
             "archive list": self.archive_list,
-            "add card": self.add_card,
+            "add card": self.add_card,w
             "open card": self.open_card,
             "update card name": self.update_card_name,
             "delete card": self.delete_card,

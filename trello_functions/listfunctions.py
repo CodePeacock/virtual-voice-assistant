@@ -29,11 +29,11 @@ def update_list_name(client):
             speak("What list do you want to update?")
             list_name = takecommand().lower()
             lists = board.list_lists()
-            for list in lists:
-                if list_name in list.name.lower():
+            for trello_list in lists:
+                if list_name in trello_list.name.lower():
                     speak("What do you want to update the list name to?")
                     new_list_name = takecommand()
-                    list.set_name(new_list_name)
+                    trello_list.set_name(new_list_name)
 
 
 def archive_list(client):
@@ -46,6 +46,6 @@ def archive_list(client):
             speak("What list do you want to archive?")
             list_name = takecommand().lower()
             lists = board.list_lists()
-            for list in lists:
-                if list_name in list.name.lower():
-                    list.set_closed(True)
+            for trello_list in lists:
+                if list_name in trello_list.name.lower():
+                    trello_list.set_closed(True)

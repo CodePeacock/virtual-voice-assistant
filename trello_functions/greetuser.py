@@ -7,7 +7,6 @@ from trello_functions.voiceassistant import speak, sr, takecommand
 VANAME = "Alice"
 source = sr.Microphone()
 
-
 def wishme():
     """
     This function greets the user with a good morning, afternoon, or evening.

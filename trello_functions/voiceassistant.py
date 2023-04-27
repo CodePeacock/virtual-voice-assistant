@@ -42,16 +42,16 @@ def recognizer():
     return speech_recognition_result.text
 
 
-with speech_recognizer.recognize_once_async().get() as source:
+# with speech_recognizer.recognize_once_async().get() as source:
 
-    def speak(source):
-        """
-        The function takes in a string of text, converts it to speech, and plays it back to the user
+#     def speak(source):
+#         """
+#         The function takes in a string of text, converts it to speech, and plays it back to the user
 
-        :param audio: The audio to be played
-        """
+#         :param audio: The audio to be played
+#         """
 
-        return recognizer()
+#         return recognizer()
 
 
 # def fine_tune_audio(r, source):
