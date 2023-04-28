@@ -3,8 +3,7 @@ from .boardfunctions import *
 from .cardfunctions import *
 from .clienttoken import *
 from .listfunctions import *
-from .switcharray import *
-from .trello_functions import *
+from .switcharray import trello_Array
 from .voiceassistant import *
 from .greetuser import *
 from .cardchecklistfunctions import *

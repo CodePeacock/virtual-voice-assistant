@@ -4,7 +4,7 @@ import os
 import azure.cognitiveservices.speech as speechsdk
 
 # import pyttsx3
-import speech_recognition as sr
+# import speech_recognition as sr
 
 # engine = pyttsx3.init("sapi5")
 # voices = engine.getProperty("voices")
@@ -42,27 +42,32 @@ def recognizer():
     return speech_recognition_result.text
 
 
-# with speech_recognizer.recognize_once_async().get() as source:
+def speak(text: str):
+    """This function will take in text and convert it to speech"""
+    speech_config = speechsdk.SpeechConfig(
+        speech_recognition_language="en-IN",
+        subscription=os.environ.get("SPEECH_KEY"),
+        region=os.environ.get("SPEECH_REGION"),
+    )
 
-#     def speak(source):
-#         """
-#         The function takes in a string of text, converts it to speech, and plays it back to the user
+    audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
+    speech_synthesizer = speechsdk.SpeechSynthesizer(
+        speech_config=speech_config, audio_config=audio_config
+    )
 
-#         :param audio: The audio to be played
-#         """
-
-#         return recognizer()
-
-
-# def fine_tune_audio(r, source):
-#     # r.adjust_for_ambient_noise(source, duration=1)
-#     print("Listening...")
-#     r.pause_threshold = 1
-#     r.energy_threshold = 300
-#     result = r.listen(r, source)
-#     print("Now you can speak...")
-
-#     return result
+    result = speech_synthesizer.speak_text_async(text).get()
+    if result.reason == speechsdk.ResultReason.SynthesizingAudioCompleted:
+        print(f"Speech synthesized to speaker for text [{text}]")
+    elif result.reason == speechsdk.ResultReason.Canceled:
+        cancellation_details = result.cancellation_details
+        print(f"Speech synthesis canceled: {cancellation_details.reason}")
+        if (
+            cancellation_details.reason == speechsdk.CancellationReason.Error
+            and cancellation_details.error_details
+        ):
+            print(f"Error details: {cancellation_details.error_details}")
+        print("Did you update the subscription info?")
+    return result
 
 
 def takecommand():

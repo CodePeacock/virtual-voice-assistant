@@ -19,7 +19,7 @@ class trello_Array:
             "add list": self.add_list,
             "update list name": self.update_list_name,
             "archive list": self.archive_list,
-            "add card": self.add_card,w
+            "add card": self.add_card,
             "open card": self.open_card,
             "update card name": self.update_card_name,
             "delete card": self.delete_card,
@@ -34,9 +34,6 @@ class trello_Array:
 
     def update_board_name(self):
         boardfunctions.update_board_name(self.client)
-
-    def delete_board(self):
-        boardfunctions.delete_board(self.client)
 
     def add_list(self):
         listfunctions.add_list(self.client)
