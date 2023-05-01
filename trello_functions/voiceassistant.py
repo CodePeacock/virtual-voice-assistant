@@ -3,13 +3,6 @@ import os
 
 import azure.cognitiveservices.speech as speechsdk
 
-# import pyttsx3
-# import speech_recognition as sr
-
-# engine = pyttsx3.init("sapi5")
-# voices = engine.getProperty("voices")
-# engine.setProperty("voice", voices[1].id)
-
 
 def recognizer():
     """This function will take in audio and convert it to text"""
@@ -45,14 +38,15 @@ def recognizer():
 def speak(text: str):
     """This function will take in text and convert it to speech"""
     speech_config = speechsdk.SpeechConfig(
-        speech_recognition_language="en-IN",
+        speech_recognition_language="en-US",
         subscription=os.environ.get("SPEECH_KEY"),
         region=os.environ.get("SPEECH_REGION"),
     )
 
     audio_config = speechsdk.audio.AudioOutputConfig(use_default_speaker=True)
     speech_synthesizer = speechsdk.SpeechSynthesizer(
-        speech_config=speech_config, audio_config=audio_config
+        speech_config=speech_config,
+        audio_config=audio_config,
     )
 
     result = speech_synthesizer.speak_text_async(text).get()
@@ -71,27 +65,4 @@ def speak(text: str):
 
 
 def takecommand():
-    # # sourcery skip: extract-method, inline-immediately-returned-variable
-    # """
-    # It takes a command from the user, and returns it as a string
-    # :return: A string
-    # """
-
-    # with sr.Microphone() as source:
-    #     print("Listening...")
-    #     # r.pause_threshold = 0.7
-    #     # r.energy_threshold = 10
-    #     # r.energy_threshold = 300
-    #     print("Now you can speak...")
-    #     audio = recognizer()
-    # try:
-    #     print("Recognizing...")
-    #     query = recognizer()
-    #     print(f"User said: {query}\n")
-
-    # except sr.RequestError as exception:
-    #     print(exception)
-    #     print("Unable to Recognize your voice.")
-    #     return "None"
-    query = recognizer()
-    return query
+    return recognizer()

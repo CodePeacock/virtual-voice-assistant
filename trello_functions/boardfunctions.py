@@ -2,24 +2,20 @@
 import webbrowser
 from trello_functions.voiceassistant import speak, takecommand
 
-# board_list = [board.name.lower() for board in client.list_boards()]
-# print(board_list)
-
 
 def get_all_boards(client):
     """
-    This function will return a list of all the boards in the user's account
+    Returns a list of all the boards in the user's account.
 
     :param client: TrelloClient object
+    :return: List of board IDs
     """
-    boards = client.list_boards()
-    for board in boards:
-        print(board.id)
+    return [board.id for board in client.list_boards()]
 
 
 def open_trello(client):
     """
-    This function will open the user's trello account
+    Opens the user's Trello account in a web browser.
 
     :param client: TrelloClient object
     """
@@ -28,18 +24,22 @@ def open_trello(client):
 
 def add_board(client):
     """
-    This function will add a board to the user's account
+    Adds a board to the user's account.
 
     :param client: TrelloClient object
     """
     speak("What do you want to name your board?")
-    board_name = takecommand()
-    client.add_board(board_name)
+    board_name = takecommand().lower().replace(" ", ".")
+    try:
+        client.add_board(board_name)
+        speak(f"Board '{board_name}' added.")
+    except Exception as e:
+        speak(f"Error adding board: {str(e)}")
 
 
 def open_board(client):
     """
-    This function will open a board in the user's account
+    Opens a board in the user's account.
 
     :param client: TrelloClient object
     """
@@ -49,11 +49,13 @@ def open_board(client):
     for board in boards:
         if board_name in board.name.lower():
             webbrowser.open(board.url)
+            return
+    speak(f"Board '{board_name}' not found.")
 
 
 def update_board_name(client):
     """
-    This function will update a board
+    Updates the name of a board.
 
     :param client: TrelloClient object
     """
@@ -64,21 +66,21 @@ def update_board_name(client):
         if board_name in board.name.lower():
             speak("What do you want to update the board name to?")
             new_board_name = takecommand()
-            board.set_name(new_board_name)
-            speak("Board name updated")
+            try:
+                board.set_name(new_board_name)
+                speak("Board name updated.")
+            except Exception as e:
+                speak(f"Error updating board name: {str(e)}")
+            return
+    speak(f"Board '{board_name}' not found.")
 
 
 def close_and_archive_board(client):
     """
-    This function will close and archive a board
+    Closes and archives a board.
 
     :param client: TrelloClient object
     """
     speak("What board do you want to close and archive?")
     board_name = takecommand().lower()
-    boards = client.list_boards()
-    for board in boards:
-        if board_name in board.name.lower():
-            board.close()
-            board.set_closed(True)
-            speak("Board closed and archived")
+    boards = client.list_

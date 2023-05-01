@@ -7,7 +7,7 @@ from trello_functions import (
 )
 
 
-class trello_Array:
+class trello_array:
     """This class contains the switch array which is used to call the functions"""
 
     def __init__(self, client):
@@ -25,6 +25,9 @@ class trello_Array:
             "delete card": self.delete_card,
             "exit": self.exit,
         }
+
+    def open_trello(self):
+        boardfunctions.open_trello(self.client)
 
     def open_board(self):
         boardfunctions.open_board(self.client)

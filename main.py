@@ -1,41 +1,37 @@
-""" This is the main file of the project. It contains the main function and the switcharray. """
+"""
+This is the main file for the Trello Voice Assistant.
+"""
+
 import os
 
-from trello_functions import (
-    clienttoken,
-    voiceassistant,
-    switcharray,
-)
-
-# vaname = greetUser.VANAME
+from trello_functions import clienttoken, trello_array, voiceassistant
 
 
-def using_switcharray():
-    """
-    This function is the main function of the project. It contains the switcharray.
-    """
-    # A dictionary.
-    # Checking if git remote is broken
-    # switcharray = {
-    #     "add board.": boardfunctions.add_board,
-    #     "update board name.": boardfunctions.update_board_name,
-    #     "delete board.": boardfunctions.close_and_archive_board,
-    #     "add list.": listfunctions.add_list,
-    #     "update list name.": listfunctions.update_list_name,
-    #     "archive list.": listfunctions.archive_list,
-    #     "add card.": cardfunctions.add_card,
-    #     "open card.": cardfunctions.open_card,
-    #     "update card name.": cardfunctions.update_card_name,
-    #     "delete card.": cardfunctions.delete_card,
-    #     # "add check list": cardChecklistFunctions.add_checklist_item,
-    #     "open trello.": boardfunctions.open_trello,
-    #     "exit.": exit,
-    # }
+def run_voice_command():
+    """Run the main voice command loop."""
+    switchmap = trello_array(clienttoken.CLIENT)
+    switch_map = {
+        "add board": switchmap.add_board,
+        "update board name": switchmap.update_board_name,
+        # "delete board": trello_array.close_and_archive_board,
+        "add list": switchmap.add_list,
+        "update list name": switchmap.update_list_name,
+        "archive list": switchmap.archive_list,
+        "add card": switchmap.add_card,
+        "open card": switchmap.open_card,
+        "update card name": switchmap.update_card_name,
+        "delete card": switchmap.delete_card,
+        "open trello": switchmap.open_trello,
+        "open board": switchmap.open_board,
+        "exit": switchmap.exit,
+    }
+
     try:
-        query: str = voiceassistant.takecommand()
+        query = voiceassistant.takecommand().replace(".", "").lower()
+        print(f"You said: {query}")
 
-        if query.lower() in switcharray:
-            switcharray[query.lower()](clienttoken.CLIENT)
+        if query in switch_map:
+            switch_map[query]()
         else:
             voiceassistant.speak("Sorry, I didn't understand that")
     except Exception as error:
@@ -43,16 +39,13 @@ def using_switcharray():
         raise
 
 
-# A way to run the main function only when you want to run the script directly.
 if __name__ == "__main__":
 
-    def clear():
-        """This function clears the terminal."""
+    def clear_terminal():
+        """Clear the terminal."""
         return os.system("cls")
 
-    clear()
-    # greetUser.wishMe()
-    # greetUser.username()
+    clear_terminal()
 
     while True:
-        using_switcharray()
+        run_voice_command()
