@@ -11,7 +11,7 @@ def run_voice_command():
     """Run the main voice command loop."""
     switchmap = trello_array(clienttoken.CLIENT)
     switch_map = {
-        "add board": switchmap.add_board,
+        "create board": switchmap.add_board,
         "update board name": switchmap.update_board_name,
         # "delete board": trello_array.close_and_archive_board,
         "add list": switchmap.add_list,
@@ -27,7 +27,8 @@ def run_voice_command():
     }
 
     try:
-        query = voiceassistant.takecommand().replace(".", "").lower()
+        command = voiceassistant.takecommand().lower().replace(".", "")
+        query: str = command
         print(f"You said: {query}")
 
         if query in switch_map:

@@ -1,6 +1,6 @@
 {
     "python.analysis.extraPaths": [
-        "./modules"
+        "./trello_functions"
     ],
     "python.analysis.typeCheckingMode": "off"
 }
