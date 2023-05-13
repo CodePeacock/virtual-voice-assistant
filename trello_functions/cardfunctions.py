@@ -86,7 +86,7 @@ def update_card_name(client):
                     for card in cards:
                         if card_name in card.name.lower():
                             speak("What do you want to update the card name to?")
-                            new_card_name = takecommand()
+                            new_card_name = takecommand().lower().replace(".", "")
                             card.set_name(new_card_name)
 
 

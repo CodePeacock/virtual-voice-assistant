@@ -15,7 +15,7 @@ def add_list(client):
     for board in boards:
         if board_name in board.name.lower():
             speak("What do you want to name your list?")
-            list_name = takecommand().lower().replace(".","")
+            list_name = takecommand().lower().replace(".", "")
             board.add_list(list_name)
 
 
@@ -32,7 +32,7 @@ def update_list_name(client):
             for trello_list in lists:
                 if list_name in trello_list.name.lower():
                     speak("What do you want to update the list name to?")
-                    new_list_name = takecommand()
+                    new_list_name = takecommand().lower().replace(".", "")
                     trello_list.set_name(new_list_name)
 
 
