@@ -96,7 +96,7 @@ notebook_shim==0.2.3
 numpy==1.23.5
 oauthlib==3.2.2
 object-detection==0.0.3
-opencv-python==4.7.0.72
+opencv-python==4.8.1.78.72
 opt-einsum==3.3.0
 packaging==23.1
 pandas==2.0.0
