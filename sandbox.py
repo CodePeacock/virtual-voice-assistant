@@ -8,12 +8,7 @@ class Solution:
         for char in s:
             curr_val = roman_to_int[char]
 
-            if curr_val > prev_val:
-                result += curr_val - 2 * prev_val
-
-            else:
-                result += curr_val
-
+            result += curr_val - 2 * prev_val if curr_val > prev_val else curr_val
             prev_val = curr_val
 
         return result
